@@ -1,0 +1,15 @@
+# You can alwas see what an alias does with `alias <command>`
+
+# | shell |
+
+alias c=clear
+alias ll='ls -l'
+alias mv='mv -i'
+
+# | git |
+
+alias gpr='git push origin master'
+alias gs='git status'
+
+# | tmux |
+alias t='tmux'
