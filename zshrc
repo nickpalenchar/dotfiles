@@ -149,4 +149,4 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 
 # MUST stay at the end
-source zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
