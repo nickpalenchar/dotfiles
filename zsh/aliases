@@ -20,7 +20,8 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias ga.='git add .'
 gac() { git add -A && git commit -am "$1"; }
-alias gpr="gpb $@"
+gacr() { gac "$@" && gpr; }
+alias gpr=gpb
 gpb() {
   BRANCH=$(git branch | grep \*|cut -c3-);
   echo "pushing to [$BRANCH]";
