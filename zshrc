@@ -148,5 +148,12 @@ source ~/.zsh/bash_aliases
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 
+# "extentions", source anything that begins with .bash_
+
+for i in $(ls -a) do
+    if [[ "$i" =~ ^.bashext_ ]]; then
+        source $i;
+    fi
+
 # MUST stay at the end
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
