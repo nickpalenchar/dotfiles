@@ -1,6 +1,6 @@
 
 
-man() {
+function man() {
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
         LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -45,7 +45,7 @@ usr_sym() {
 
 }
 
-export PS1="%F{148}%n %F{035}$(abbrv_wd %d)%F{038}$(parse_git_branch)%f %F{033}$(usr_sym %#)%f "
+export PS1="%F{148}%n %F{035}$(abbrv_wd %d)%F{038}$(parse_git_branch)%f %F{033}%f "
 export PS2="%F{033}▷▷%f "
 
 
@@ -147,6 +147,8 @@ source ~/.zsh/aliases
 source ~/.zsh/bash_aliases
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
+# https://github.com/sorin-ionescu/prezto
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # "extentions", source anything that begins with .bash_
 
