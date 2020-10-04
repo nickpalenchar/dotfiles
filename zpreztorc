@@ -38,7 +38,16 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'prompt'
+  'prompt' \
+  'git'
+
+#
+# Git configuration
+#
+
+# no aliases (I have my own)
+zstyle ':prezto:module:git:alias' skip 'yes'
+
 
 #
 # Autosuggestions
