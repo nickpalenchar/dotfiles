@@ -51,3 +51,10 @@ fi
 if [[ -z "$(which fff)" ]]; then
     brew install fff
 fi
+
+### diff-so-fancy
+
+if [[ -z "$(which diff-so-fancy)" ]]; then
+    brew install diff-so-fancy
+fi
+

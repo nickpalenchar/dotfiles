@@ -120,7 +120,8 @@ alias rm-stale="git fetch --prune && git branch -r | awk '{print $1}' | egrep -v
 
 # ----------------------------------------------------
 
-
+# tldr - fix for bug
+export LANG='none'
 
 
 # git bash completion!
