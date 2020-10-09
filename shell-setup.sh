@@ -58,3 +58,14 @@ if [[ -z "$(which diff-so-fancy)" ]]; then
     brew install diff-so-fancy
 fi
 
+### ncdu
+
+if [[ -z "$(which ncdu)" ]]; then
+    brew install ncdu
+fi
+
+### lnav
+if [[ -z "$(which lnav)" ]]; then
+    echo "installing lnav"
+    brew install lnav
+fi
