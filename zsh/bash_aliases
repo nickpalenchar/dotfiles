@@ -12,6 +12,7 @@ alias cdm="cd $HOME/mason"
 
 alias gpr='git push origin master'
 alias gs='git status'
+alias glo='git log --oneline'
 
 # | tmux |
 alias t='tmux'
