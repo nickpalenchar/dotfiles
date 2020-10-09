@@ -39,3 +39,7 @@ Thumbs.db
 ##############
 
 node_modules
+
+# Custom #
+
+localdata # generally I have a directory for local notes 
