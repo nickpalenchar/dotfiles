@@ -11,3 +11,6 @@
 [user]
 	name = Nick Palenchar
 	email = nickpal@nickpalenchar.com
+
+[include]
+    path = ~/.gitconfig.local
