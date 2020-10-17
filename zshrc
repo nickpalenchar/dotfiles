@@ -158,5 +158,9 @@ for i in $(ls -a) do
         source $i;
     fi
 
+
+# Default editor
+export EDITOR=vim
+
 # MUST stay at the end
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
