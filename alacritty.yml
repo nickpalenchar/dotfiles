@@ -366,7 +366,7 @@ font:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-working_directory: '~'
+# working_directory: '$HOME'
 
 # WinPTY backend (Windows only)
 #

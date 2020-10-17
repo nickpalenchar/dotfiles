@@ -69,3 +69,11 @@ if [[ -z "$(which lnav)" ]]; then
     echo "installing lnav"
     brew install lnav
 fi
+
+### y
+
+if [[ -z "$(which yq)" ]]; then
+    echo "installing yq"
+    pip3 install yq
+fi
+
