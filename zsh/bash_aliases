@@ -7,6 +7,8 @@ alias ll='ls -l'
 alias mv='mv -i'
 alias cdd="cd $HOME/dotfiles"
 alias cdm="cd $HOME/mason"
+cb() { cd $OLDPWD ; }
+
 
 # | git |
 
