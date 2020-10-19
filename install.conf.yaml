@@ -14,5 +14,6 @@
     ~/.alacritty.yml: alacritty.yml
     ~/.zpreztorc: zpreztorc
     ~/.gitignore_global: gitignore_global
+    ~/.gitattributes_global: gitattributes_global
     ~/.gitconfig: gitconfig
     ~/Library/Application Support/JetBrains/PyCharmCE2020.1/keymaps: pycharm/keymaps
