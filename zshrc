@@ -1,4 +1,4 @@
-
+echo ''
 
 function man() {
     env \
