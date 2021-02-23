@@ -66,7 +66,6 @@ alias ~="cd ~"                              # ~:            Go Home
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 alias c='clear'
 
-ls () { /bin/ls -F $*;  }
 
 alias py3='python3'
 
@@ -153,9 +152,9 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # "extentions", source anything that begins with .bash_
 
-for i in $(ls -a) do
+for i in $(ls -a $HOME) do
     if [[ "$i" =~ ^.bashext_ ]]; then
-        source $i;
+        source "$HOME/$i";
     fi
 
 
