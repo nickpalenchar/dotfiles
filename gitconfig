@@ -16,3 +16,5 @@
 
 [include]
     path = ~/.gitconfig.local
+[alias]
+    last = log -1 HEAD

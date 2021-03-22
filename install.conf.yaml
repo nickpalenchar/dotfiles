@@ -17,3 +17,7 @@
     ~/.gitattributes_global: gitattributes_global
     ~/.gitconfig: gitconfig
     ~/Library/Application Support/JetBrains/PyCharmCE2020.1/keymaps: pycharm/keymaps
+    /usr/local/bin/:
+        path: local/bin/*
+        glob: true
+        if: '[[ -d local ]]'
