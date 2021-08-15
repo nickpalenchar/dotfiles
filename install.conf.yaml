@@ -9,6 +9,7 @@
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
+    ~/.bash_profile: bash_profile
     ~/.zsh: zsh
     ~/.zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.alacritty.yml: alacritty.yml
