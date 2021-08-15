@@ -12,7 +12,6 @@ cb() { cd $OLDPWD ; }
 
 # | git |
 
-alias gpr='git push origin master'
 alias gs='git status'
 alias glo='git log --oneline'
 
