@@ -1,6 +1,14 @@
 #!/usr/bin/env bash 
 #set -x
 
+########################
+# ADDITIONAL MAUNAL STEPS
+# ######################3
+#
+# The following should be installed manually:
+# * UbuntuMono (https://www.nerdfonts.com/font-downloads) - for NvChad
+
+
 #######
 # zsh
 ######
@@ -9,15 +17,6 @@
 
 if [[ -z "$(which brew)" ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-fi
-
-##############
-# PREZTO
-##############
-
-if [[ ! -d "$HOME/.zprezto" ]]; then
-    echo "setting up prezto"
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
 
 
@@ -75,5 +74,12 @@ fi
 if [[ -z "$(which yq)" ]]; then
     echo "installing yq"
     pip3 install yq
+fi
+
+### neovim
+
+if [[ -z "$(which nvim)" ]]; then
+  echo "installing nvim"
+  brew install neovim
 fi
 
