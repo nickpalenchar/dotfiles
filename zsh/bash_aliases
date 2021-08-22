@@ -17,3 +17,6 @@ alias glo='git log --oneline'
 
 # | tmux |
 alias t='tmux'
+
+# | nvim |
+alias n='nvim'
