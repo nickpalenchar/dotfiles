@@ -18,6 +18,9 @@
     ~/.gitattributes_global: gitattributes_global
     ~/.gitconfig: gitconfig
     ~/Library/Application Support/JetBrains/PyCharmCE2020.1/keymaps: pycharm/keymaps
+    ~/.config/nvim/init.vim:
+      path: init.vim
+      create: true
     /usr/local/bin/:
         path: local/bin/*
         glob: true
