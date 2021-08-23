@@ -36,8 +36,13 @@ abbrv_wd() {
     fi
 }
 
-
-export PS1="\033[0;36m\]\u\[\033[0;35m\] \$(abbrv_wd \w)\[\033[32m\]\$(parse_git_branch)\[\033[33m\] λ\[\033[00m\] "
+# https://www.shellhacks.com/bash-colors/
+CCYAN="\[\e[36m\]"
+CPURPLE="\[\e[35m\]"
+CGREEN="\[\e[32m\]"
+CYELLOW="\[\e[33m\]"
+CEND="\[\e[0m\]"
+export PS1="$CCYAN \u $CPURPLE\$(abbrv_wd \w)$CGREEN\$(parse_git_branch)$CYELLOW λ$CEND "
 export PS2="→ "
 
 PATH=$PATH:/usr/local/bin/; export PATH
