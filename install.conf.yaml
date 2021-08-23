@@ -10,6 +10,7 @@
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
     ~/.bash_profile: bash_profile
+    ~/.git-completion.bash: git-completion.bash
     ~/.zsh: zsh
     ~/.zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.alacritty.yml: alacritty.yml
