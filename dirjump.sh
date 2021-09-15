@@ -11,10 +11,12 @@
 #   clear <n> - clear directory with mark <n>
 #   clear-all - clear all directory marks
 
+main() {
+set -u
+
 mkdir -p /var/dirjump
 
 from-mark () {
-  set -u
   
   echo "$(grep "^${1}" /var/dirjump/marks | cut -d' ' -f 2-)"
 
@@ -29,8 +31,17 @@ case "$1" in
       exit 0
     fi
     
-    echo "$2 $(pwd)" | cat - /var/dirjump/marks | sort >> /var/dirjump/marks
+    echo "$2 $(pwd)" | cat /var/dirjump/marks - | sort > /tmp/newmarks
+    cat /tmp/newmarks > /var/dirjump/marks
+    echo "mark $2 set"
   ;;
+
+  jump)
+    
 
 
 esac
+
+}
+
+main "$@"
