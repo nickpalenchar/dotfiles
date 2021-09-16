@@ -12,7 +12,6 @@
 #   clear-all - clear all directory marks
 
 main() {
-set -u
 
 mkdir -p /var/dirjump
 
@@ -28,7 +27,7 @@ case "$1" in
     set -u
     if [[ "$(from-mark $2)" ]]; then
       echo 'mark already exists'
-      exit 0
+      return 0
     fi
     
     echo "$2 $(pwd)" | cat /var/dirjump/marks - | sort > /tmp/newmarks
@@ -37,14 +36,37 @@ case "$1" in
   ;;
 
   jump)
-    echo 'hi'
     local TARGET="$(from-mark $2)" 
     if [[ -z "$TARGET" ]]; then
       echo 'no such mark'
-      exit 0
+      return 0
     fi
-    echo "target is $TARGET"
     cd "$TARGET"
+  ;;
+
+  list)
+    cat /var/dirjump/marks
+  ;;
+
+  clear)
+    printf '' > /var/dirjump/marks
+    echo 'all marks cleaned!'
+  ;;
+
+  mark-or-jump)
+    # create if mark doesn't exist
+    # mark if jump does exist
+    # otherwise list
+    if [[ -z "$2" ]]; then
+      cat /var/dirjump/marks
+      return 0
+    fi
+    local TARGET="$(from-mark "$2")"
+    if [[ "$TARGET" ]]; then
+      cd "$TARGET"
+    else
+      dirjump mark "$2"
+    fi
   ;;
 
 esac
