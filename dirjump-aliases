@@ -1,0 +1,37 @@
+
+# easilly mark directories to jump back to later in one command
+#
+# @ followed by letter marks the current directory if the mark is
+# available, or jumps to the mark if it exists.
+#
+# Requires `dirjump` (in dotfiles) to be in $PATH; this file
+# mearly makes use of dirjump very efficient
+
+alias @a='. dirjump mark-or-jump a'
+alias @b='. dirjump mark-or-jump b'
+alias @c='. dirjump mark-or-jump c'
+alias @d='. dirjump mark-or-jump d'
+alias @e='. dirjump mark-or-jump e'
+alias @f='. dirjump mark-or-jump f'
+alias @g='. dirjump mark-or-jump g'
+alias @h='. dirjump mark-or-jump h'
+alias @i='. dirjump mark-or-jump i'
+alias @j='. dirjump mark-or-jump j'
+alias @k='. dirjump mark-or-jump k'
+alias @l='. dirjump mark-or-jump l'
+alias @m='. dirjump mark-or-jump m'
+alias @n='. dirjump mark-or-jump n'
+alias @o='. dirjump mark-or-jump o'
+alias @p='. dirjump mark-or-jump p'
+alias @q='. dirjump mark-or-jump q'
+alias @r='. dirjump mark-or-jump r'
+alias @s='. dirjump mark-or-jump s'
+alias @t='. dirjump mark-or-jump t'
+alias @u='. dirjump mark-or-jump u'
+alias @v='. dirjump mark-or-jump v'
+alias @w='. dirjump mark-or-jump w'
+alias @x='. dirjump mark-or-jump x'
+alias @y='. dirjump mark-or-jump y'
+alias @z='. dirjump mark-or-jump z'
+alias @='. dirjump list'
+alias @@='. dirjump clear'

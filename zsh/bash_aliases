@@ -14,6 +14,9 @@ cb() { cd $OLDPWD ; }
 
 alias gs='git status'
 alias glo='git log --oneline'
+alias ga='git add'
+alias gd='git diff'
+alias gt='git commit'
 
 # | tmux |
 alias t='tmux'

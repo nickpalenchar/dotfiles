@@ -83,3 +83,7 @@ if [[ -z "$(which nvim)" ]]; then
   brew install neovim
 fi
 
+if [[ -z "$(which telnet)" ]]; then
+  echo "installing telnet"
+  brew install telnet
+fi
