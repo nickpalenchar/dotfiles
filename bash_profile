@@ -42,7 +42,7 @@ CPURPLE="\[\e[35m\]"
 CGREEN="\[\e[32m\]"
 CYELLOW="\[\e[33m\]"
 CEND="\[\e[0m\]"
-export PS1="$CCYAN \u $CPURPLE\$(abbrv_wd \w)$CGREEN\$(parse_git_branch)$CYELLOW λ$CEND "
+export PS1="$CCYAN\u $CPURPLE\$(abbrv_wd \w)$CGREEN\$(parse_git_branch)$CYELLOW λ$CEND "
 export PS2="→ "
 
 PATH=$PATH:/usr/local/bin/; export PATH
@@ -81,6 +81,10 @@ export PATH
 source ~/.zsh/aliases
 source ~/.zsh/bash_aliases
 
+# DIRJUMP #
+
+source .dirjump-aliases
+
 
 # "extentions", source anything that begins with .bash_
 
@@ -97,3 +101,4 @@ export EDITOR=vim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "$HOME/.cargo/env"

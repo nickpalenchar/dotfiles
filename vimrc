@@ -46,6 +46,16 @@ nnoremap <leader><space> :nohlsearch<CR>
 set foldenable
 set foldlevelstart=10
 
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+
+"let g:netrw_liststyle = 3
+"let g:netrw_banner = 0
+
 nnoremap gV `[v`]
 
 "uu will escape insert mode (because Dvorak)"
@@ -87,5 +97,10 @@ set backspace=indent,eol,start
     " ctrl+l clears search highlights
     nnoremap <C-L> :nohl<CR><C-L>
 
+
 " KEYMAPS
-nmap <C-d> yyp
+  nmap <C-n> yyp " duplicate line
+  nmap <C-t> :Vexplore<Enter> :vertical resize -15 <Enter> " Open file explorer
+  " Navigation
+    nmap <S-C-'> :vertical res -2
+    nmap <C-,> :vertical res +2

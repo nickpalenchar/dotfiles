@@ -87,3 +87,10 @@ if [[ -z "$(which telnet)" ]]; then
   echo "installing telnet"
   brew install telnet
 fi
+
+if [[ -z "$(which rust)" ]]; then
+  echo "installing rust"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+
