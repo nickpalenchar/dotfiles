@@ -1,3 +1,5 @@
+# DEPRECATED - use bash/aliases instead
+
 # You can alwas see what an alias does with `alias <command>`
 
 # | shell |
@@ -17,9 +19,23 @@ alias glo='git log --oneline'
 alias ga='git add'
 alias gd='git diff'
 alias gt='git commit'
+alias gca='git commit --amend'
+rrebase() {
+  set -u
+  
+  git checkout $1
+  git pull origin $1
+  g..
+  git rebase $1
+  echo 'happy hacking :)'
+  set +u
+}
 
 # | tmux |
 alias t='tmux'
 
 # | nvim |
 alias n='nvim'
+
+# | docker compose |
+alias dc='docker compose'
