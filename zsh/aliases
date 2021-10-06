@@ -29,7 +29,7 @@ alias gpr=gpb
 gpb() {
   BRANCH=$(git branch | grep \*|cut -c3-);
   echo "pushing to [$BRANCH]";
-  git push origin $BRANCH;
+  git push origin $BRANCH $@;
 }
 
 # |docker|

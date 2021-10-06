@@ -15,6 +15,7 @@ cb() { cd $OLDPWD ; }
 # | git |
 
 alias gs='git status'
+alias gc='git checkout'
 alias glo='git log --oneline'
 alias ga='git add'
 alias gd='git diff'
