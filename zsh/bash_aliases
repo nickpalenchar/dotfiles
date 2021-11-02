@@ -40,3 +40,5 @@ alias n='nvim'
 
 # | docker compose |
 alias dc='docker compose'
+# | HOLLYWOOD |
+alias hollywood='docker run --rm -it bcbcarl/hollywood'

@@ -104,3 +104,5 @@ set backspace=indent,eol,start
   " Navigation
     nmap <S-C-'> :vertical res -2
     nmap <C-,> :vertical res +2
+
+

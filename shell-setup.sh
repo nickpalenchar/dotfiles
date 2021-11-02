@@ -93,4 +93,10 @@ if [[ -z "$(which rust)" ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
+# https://github.com/junegunn/vim-plug
+if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+  echo "installing vim-plug"
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
