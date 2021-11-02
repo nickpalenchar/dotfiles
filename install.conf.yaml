@@ -20,6 +20,7 @@
     ~/.gitconfig: gitconfig
     ~/Library/Application Support/JetBrains/PyCharmCE2020.1/keymaps: pycharm/keymaps
     /usr/local/bin/dirjump: dirjump
+    /usr/local/bin/dockertags: dockertags
     ~/.dirjump-aliases: dirjump-aliases 
     ~/.config/nvim:
       path: nvim

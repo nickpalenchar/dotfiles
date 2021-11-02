@@ -83,7 +83,7 @@ source ~/.zsh/bash_aliases
 
 # DIRJUMP #
 
-source .dirjump-aliases
+source ~/.dirjump-aliases
 
 
 # "extentions", source anything that begins with .bash_
@@ -102,3 +102,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 . "$HOME/.cargo/env"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

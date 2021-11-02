@@ -11,13 +11,17 @@
 #   clear <n> - clear directory with mark <n>
 #   clear-all - clear all directory marks
 
+
 main() {
 
-mkdir -p /var/dirjump
+local MAINDIR="$HOME/.dirjump"
+
+mkdir -p $MAINDIR
+touch $MAINDIR/marks
 
 from-mark () {
   
-  echo "$(grep "^${1}" /var/dirjump/marks | cut -d' ' -f 2-)"
+  echo "$(grep "^${1}" $MAINDIR/marks | cut -d' ' -f 2-)"
 
 }
 
@@ -30,8 +34,8 @@ case "$1" in
       return 0
     fi
     
-    echo "$2 $(pwd)" | cat /var/dirjump/marks - | sort > /tmp/newmarks
-    cat /tmp/newmarks > /var/dirjump/marks
+    echo "$2 $(pwd)" | cat $MAINDIR/marks - | sort > /tmp/newmarks
+    cat /tmp/newmarks > $MAINDIR/marks
     echo "mark $2 set"
   ;;
 
@@ -45,12 +49,17 @@ case "$1" in
   ;;
 
   list)
-    cat /var/dirjump/marks
+    cat $MAINDIR/marks
   ;;
 
   clear)
-    printf '' > /var/dirjump/marks
-    echo 'all marks cleaned!'
+    if [[ "$2" ]]; then
+      sed -i '' "/^$2/d" $MAINDIR/marks
+      echo "mark $2 cleared!"
+    else
+      printf '' > $MAINDIR/marks
+      echo 'all marks cleared!'
+    fi
   ;;
 
   mark-or-jump)
@@ -58,7 +67,7 @@ case "$1" in
     # mark if jump does exist
     # otherwise list
     if [[ -z "$2" ]]; then
-      cat /var/dirjump/marks
+      cat $MAINDIR/marks
       return 0
     fi
     local TARGET="$(from-mark "$2")"
