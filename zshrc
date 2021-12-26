@@ -67,3 +67,5 @@ export LANG='none'
 
 autoload -Uz compinit && compinit
 
+
+# prevent command not founds when 
