@@ -10,12 +10,6 @@ function man() {
             man "$@"
 }
 
-parse_git_branch() {
-
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-
-}
-
 
 abbrv_wd() {
     # used to abbreviate the file path (takes a file path)
@@ -43,7 +37,7 @@ for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
 done
 eval RESET='%{$reset_color%}'
 
-export PS1="${CYAN}%n ${MAGENTA}$(abbrv_wd %~) ${GREEN}$(parse_git_branch) ${YELLOW}λ${RESET} "
+export PS1="${CYAN}%n ${MAGENTA}$(abbrv_wd %~) ${GREEN} ${YELLOW}λ${RESET} "
 
 export PS2="→ "
 
