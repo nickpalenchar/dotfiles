@@ -14,7 +14,7 @@ function man() {
 abbrv_wd() {
     # used to abbreviate the file path (takes a file path)
     
-    local FPATH=$(echo $1 | sed 's`'"$HOME"'`~`')
+    local FPATH="$1"
     LENGTH=$(echo $FPATH | sed -E "s/[^\/]//g" | wc -c)
     
     if [[ "$LENGTH" -gt 3 ]]; then
@@ -41,6 +41,10 @@ PATH=$PATH:/usr/local/bin/; export PATH
 
 export PATH=~/.local/bin:$PATH
 
+export PS1="$(echo $PS1 | cut -d' ' -f 1)\
+  $(abbrv_wd "$(echo $PS1 | cut -d' ' -f 2)")\
+ $(echo $PS1 | cut -d' ' -f 3-)"
+
 
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
@@ -56,4 +60,5 @@ export LANG='none'
 
 # built-in auto-completion for git with zsh
 autoload -Uz compinit && compinit
+source ~/.zsh-scripts/aliases
 
