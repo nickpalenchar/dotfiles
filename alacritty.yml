@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  TERM: xterm-256color
 
 #window:
   # Window dimensions (changes require restart)
@@ -583,8 +583,10 @@ mouse:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 
-#scrolling:
-#  key_bindings:
+key_bindings:
+  # sends ^K. This is keybound by 'zshrc' to zsh-autosuggests widget 'autosuggest-execute'
+  # Translation: pressing shift+Enter will execute the zsh-autosuggestion instantly.
+  - { key: Return, mods: Shift, chars: "\x0b" }
 #    scrollback:
 #    - { key: H,   mods: Control,   action: ScrollPageUp   }
 #    - { key: T, mods: Control,   action: ScrollPageDown }
@@ -702,4 +704,3 @@ mouse:
 
   # Print all received window events.
   #print_events: false
-
