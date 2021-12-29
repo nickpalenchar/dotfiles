@@ -586,8 +586,9 @@ mouse:
 key_bindings:
   # sends ^K. This is keybound by 'zshrc' to zsh-autosuggests widget 'autosuggest-execute'
   # Translation: pressing shift+Enter will execute the zsh-autosuggestion instantly.
-  - { key: Return, mods: Shift, chars: "\x0b" }
 #    scrollback:
+  - { key: Return, mods: Shift, chars: "\x0b" }
+  - { key: Return, mods: Command, chars: "\x0b" }
 #    - { key: H,   mods: Control,   action: ScrollPageUp   }
 #    - { key: T, mods: Control,   action: ScrollPageDown }
 #    - { key: Up,      mods: Control,   action: ScrollToBottom }

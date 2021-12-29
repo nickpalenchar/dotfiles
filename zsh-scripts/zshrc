@@ -41,7 +41,7 @@ PATH=$PATH:/usr/local/bin/; export PATH
 
 export PATH=~/.local/bin:$PATH
 
-export PS1="$(echo $PS1 | cut -d' ' -f 1)\
+export PS1=" $(echo $PS1 | cut -d' ' -f 1)\
   $(abbrv_wd "$(echo $PS1 | cut -d' ' -f 2)")\
  $(echo $PS1 | cut -d' ' -f 3-)"
 

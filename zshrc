@@ -21,7 +21,7 @@ export TERM=xterm-256color
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-ZSH_THEME="apple"
+ZSH_THEME="nicks-apple"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -79,6 +79,9 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 plugins=(
   git
   zsh-autosuggestions
+  sudo
+  web-search
+  dirhistory
 )
 
 
