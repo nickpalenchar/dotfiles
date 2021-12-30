@@ -70,8 +70,6 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 
-# Surpress annoying zsh plug on Catalina
-
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
 # PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
@@ -104,3 +102,12 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+for file in "$HOME/.shell-aliases/*"; do
+  source "$HOME/.shell-aliases/$file"
+done
+
+for file in "$HOME/shell-extensions.local/*"; do
+  source "$HOME/shell-extensions.local/*"
+done
+

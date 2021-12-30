@@ -1,165 +1,118 @@
-echo ''
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-function man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-            man "$@"
-}
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-parse_git_branch() {
+bindkey '^K' autosuggest-execute
 
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+# tmux uses $TERM to set its own color settings. In order for
+# other 256-color plugins to work within tmux (notaably zsh-autosuggestions)
+# this must be set and 256 color must be supported.
+export TERM=xterm-256color
 
-}
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+ZSH_THEME="nicks-apple"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-abbrv_wd() {
-    # used to abbreviate the file path (takes a file path)
-    
-    local FPATH=$(echo $1 | sed 's`'"$HOME"'`~`')
-    LENGTH=$(echo $FPATH | sed -E "s/[^\/]//g" | wc -c)
-    
-    if [[ "$LENGTH" -gt 3 ]]; then
-        END=$(echo $FPATH | grep -Eo "[^\/]*\/[^\/]*\/[^\/]*$")
-        ABBRV=$( echo $FPATH | sed -E "s/(\/.)[^\/]*/\1/g")
-        ABBRV=${ABBRV/%??????/}
-        FINAL=${ABBRV}/${END}
-        echo $FINAL
-    else
-        echo $FPATH
-    fi
-}
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
 
-usr_sym() {
-    if [[ "$1" == "%" ]]; then
-        echo '&'
-    else
-	echo '►►'
-    fi
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-}
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-export PS1="%F{148}%n %F{035}$(abbrv_wd %d)%F{038}$(parse_git_branch)%f %F{033}%f "
-export PS2="%F{033}▷▷%f "
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-PATH=$PATH:/usr/local/bin/; export PATH
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
- #from https://natelandau.com/my-mac-osx-bash-profile/
-export PATH=~/.local/bin:$PATH
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
 
-alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                           # Go back 1 directory level
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
-alias ~="cd ~"                              # ~:            Go Home
-mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
-alias c='clear'
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-alias py3='python3'
+# Would you like to use another custom folder than $ZSH/custom?
+ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 
-# git commands
-
-Gmove-commit-to() { git checkout -b "$1" && git reset HEAD~ --hard && git checkout "$1"; }
-alias Gs='git stash'
-gac() { git add -A && git commit -am "$1"; }
-gbd() { git branch -d "$1"; }
-gbD() { git branch -D "$1"; }
-alias gmm='git merge master'
-alias gm='git checkout master'
-alias gp='git pull'
-alias gb='git branch'
-gcb() { git checkout -b "$1"; }
-alias gcE="git commit --allow-empty -m 'automated empty commit'"
-trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
-
-alias gpr="gpb $@" # push to the current branch you're in on `origin`
-
-gpb() {
-  BRANCH=$(git branch | grep \*|cut -c3-);
-  echo "pushing to [$BRANCH]";
-  git push origin $BRANCH;
-}
-
-alias rm-stale="git fetch --prune && git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
-
-#   extract:  Extract most know archives with one command
-#   ---------------------------------------------------------
-    extract () {
-        if [ -f $1 ] ; then
-          case $1 in
-            *.tar.bz2)   tar xjf $1     ;;
-            *.tar.gz)    tar xzf $1     ;;
-            *.bz2)       bunzip2 $1     ;;
-            *.rar)       unrar e $1     ;;
-            *.gz)        gunzip $1      ;;
-            *.tar)       tar xf $1      ;;
-            *.tbz2)      tar xjf $1     ;;
-            *.tgz)       tar xzf $1     ;;
-            *.zip)       unzip $1       ;;
-            *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1        ;;
-            *)     echo "'$1' cannot be extracted via extract()" ;;
-             esac
-         else
-             echo "'$1' is not a valid file"
-         fi
-    }
-
-# ----------------------------------------------------
-
-# tldr - fix for bug
-export LANG='none'
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  zsh-autosuggestions
+  sudo
+  web-search
+  dirhistory
+)
 
 
-# git bash completion!
-# --------------------
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
+source $ZSH/oh-my-zsh.sh
 
-# clear git credentials
-# ------------------------------
-# alias git-clear="./responses.txt | git credential-osxkeychain erase"
-#alias git-clear="sudo ./responses.txt | ~/swanked-out-bash/.clear-git-credentials.bash"
+# User configuration
 
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Surpress annoying zsh plug on Catalina
-export BASH_SILENCE_DEPRECATION_WARNING=1
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# Setting PATH for Python 3.6
-# The original version is saved in .bash_profile.pysave
-# PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
-export PATH
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-source ~/.zsh/aliases
-source ~/.zsh/bash_aliases
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-# https://github.com/sorin-ionescu/prezto
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+#
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# "extentions", source anything that begins with .bash_
+source ~/.zsh-scripts/zshrc
 
-for i in $(ls -a $HOME) do
-    if [[ "$i" =~ ^.bashext_ ]]; then
-        source "$HOME/$i";
-    fi
-
-
-# Default editor
-export EDITOR=vim
-
-# MUST stay at the end
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
