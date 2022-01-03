@@ -17,6 +17,10 @@
       path: oh-my-zsh/**
       glob: true
       create: true
+    ~/.oh-my-zsh-custom:
+      path: oh-my-zsh-custom
+      glob: true
+      create: true
     ~/.zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.alacritty.yml: alacritty.yml
     ~/.gitignore_global: gitignore_global
