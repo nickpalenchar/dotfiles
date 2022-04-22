@@ -18,3 +18,5 @@
     path = ~/.gitconfig.local
 [alias]
     last = log -1 HEAD
+[pull]
+	rebase = true
