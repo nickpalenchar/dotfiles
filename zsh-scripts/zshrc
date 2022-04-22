@@ -62,3 +62,10 @@ export LANG='none'
 autoload -Uz compinit && compinit
 source ~/.zsh-scripts/aliases
 
+
+if [[ -d "$HOME/.zsh-scripts-local" ]]; then
+  for i in $(ls ~/.zsh-scripts-local); do
+    source ~/.zsh-scripts-local/$i
+  done
+fi
+
