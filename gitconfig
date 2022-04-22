@@ -20,3 +20,5 @@
     last = log -1 HEAD
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
