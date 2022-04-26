@@ -63,12 +63,6 @@ if [[ -z "$(which ncdu)" ]]; then
     brew install ncdu
 fi
 
-### lnav
-if [[ -z "$(which lnav)" ]]; then
-    echo "installing lnav"
-    brew install lnav
-fi
-
 ### y
 
 if [[ -z "$(which yq)" ]]; then
@@ -76,22 +70,11 @@ if [[ -z "$(which yq)" ]]; then
     pip3 install yq
 fi
 
-### neovim
-
-if [[ -z "$(which nvim)" ]]; then
-  echo "installing nvim"
-  brew install neovim
-fi
-
 if [[ -z "$(which telnet)" ]]; then
   echo "installing telnet"
   brew install telnet
 fi
 
-if [[ -z "$(which rust)" ]]; then
-  echo "installing rust"
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-fi
 
 # https://github.com/junegunn/vim-plug
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
@@ -100,3 +83,9 @@ if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+
+# ack
+if [[ -z "$(which ack)" ]]; then
+  echo "installing ack"
+  brew install ack
+fi
