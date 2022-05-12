@@ -26,6 +26,10 @@
     ~/.gitignore_global: gitignore_global
     ~/.gitattributes_global: gitattributes_global
     ~/.gitconfig: gitconfig
+    ~/.zsh-histdb:
+      path: zsh-histdb/**
+      glob: true
+      create: true
     ~/Library/Application Support/JetBrains/PyCharmCE2020.1/keymaps: pycharm/keymaps
     /usr/local/bin/dirjump: dirjump
     /usr/local/bin/dockertags: dockertags

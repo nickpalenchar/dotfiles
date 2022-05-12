@@ -62,6 +62,10 @@ export LANG='none'
 autoload -Uz compinit && compinit
 source ~/.zsh-scripts/aliases
 
+# zsh-histdb https://github.com/larkery/zsh-histdb
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+source ~/.zsh-histdb/sqlite-history.zsh
+autoload -Uz add-zsh-hook
 
 if [[ -d "$HOME/.zsh-scripts-local" ]]; then
   for i in $(ls ~/.zsh-scripts-local); do
