@@ -67,6 +67,10 @@ HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 source ~/.zsh-histdb/sqlite-history.zsh
 autoload -Uz add-zsh-hook
 
+# histdb reverse isearch
+source ~/.zsh-histdb/histdb-interactive.zsh
+bindkey '^r' _histdb-isearch
+
 if [[ -d "$HOME/.zsh-scripts-local" ]]; then
   for i in $(ls ~/.zsh-scripts-local); do
     source ~/.zsh-scripts-local/$i
