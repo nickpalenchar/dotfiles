@@ -63,5 +63,13 @@ mvd() {
   mv $LAST_DL $DEST/
 }
 
-
-
+rrebase() {
+  set -u
+  
+  git checkout $1
+  git pull origin $1
+  g..
+  git rebase $1
+  echo 'happy hacking :)'
+  set +u
+}
