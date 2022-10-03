@@ -73,3 +73,6 @@ rrebase() {
   echo 'happy hacking :)'
   set +u
 }
+
+alias hist=histdb
+
