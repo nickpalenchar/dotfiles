@@ -60,7 +60,6 @@ export LANG='none'
 
 # built-in auto-completion for git with zsh
 autoload -Uz compinit && compinit
-source ~/.zsh-scripts/aliases
 
 # zsh-histdb https://github.com/larkery/zsh-histdb
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
@@ -70,6 +69,12 @@ autoload -Uz add-zsh-hook
 # histdb reverse isearch
 source ~/.zsh-histdb/histdb-interactive.zsh
 bindkey '^r' _histdb-isearch
+
+for i in $(ls ~/.zsh-scripts/); do
+  if [[ "$i" != "zshrc" ]]; then
+    source ~/.zsh-scripts/$i
+  fi
+done
 
 if [[ -d "$HOME/.zsh-scripts-local" ]]; then
   for i in $(ls ~/.zsh-scripts-local); do
