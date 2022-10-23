@@ -8,19 +8,18 @@
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim
     ~/.vimrc: vimrc
-    # oh-my-zsh startup and config
+    
+# oh-my-zsh startup and config
     ~/.zshrc: zshrc 
     ~/.zsh-scripts: 
       path: zsh-scripts
       create: true
+      clean: true
     ~/.oh-my-zsh:
       path: oh-my-zsh/**
       glob: true
       create: true
-    ~/.oh-my-zsh-custom:
-      path: oh-my-zsh-custom
-      glob: true
-      create: true
+      clean: true
     ~/.zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.alacritty.yml: alacritty.yml
     ~/.gitignore_global: gitignore_global
@@ -34,10 +33,6 @@
     /usr/local/bin/dirjump: dirjump
     /usr/local/bin/dockertags: dockertags
     ~/.dirjump-aliases: dirjump-aliases 
-    ~/.config/nvim:
-      path: nvim
-      create: true
-      force: true
     /usr/local/bin/:
         path: local/bin/*
         glob: true
