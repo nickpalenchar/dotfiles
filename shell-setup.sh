@@ -16,7 +16,9 @@
 #chsh -s /bin/zsh
 
 if [[ -z "$(bash -c 'which brew')" ]]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    echo 'installing brew'
+    NONINTERACTIVE=1  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    echo 'done'
 fi
 
 
