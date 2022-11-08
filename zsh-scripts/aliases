@@ -74,5 +74,8 @@ rrebase() {
   set +u
 }
 
+# | histdb |
 alias hist=histdb
-
+ihist() {
+  histdb $@ --desc | less
+}
