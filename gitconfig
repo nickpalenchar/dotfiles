@@ -28,10 +28,20 @@
 [include]
     path = ~/.gitconfig.local
 [alias]
+    ad = add
     last = log -1 HEAD
+    lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+    dif = !git diff ':(exclude)package-lock.json'
+
 [pull]
 	rebase = true
 [init]
 	defaultBranch = main
 [merge]
 	conflictstyle = diff3
+
+[alias]
+  unstage = 'reset HEAD --'
+  p = 'pull'
+  c = 'checkout'
+  C = 'commit'
