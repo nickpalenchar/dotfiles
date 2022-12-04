@@ -47,13 +47,17 @@ fi
 # iPython
 # #######
 
+if [[ -z "$(which pipx)" ]]; then
+  echo "setting up pipx"
+  brew install pipx
+  pipx ensurepaths
+fi
+
+
+
 if [[ -z "$(bash -c 'which ipython')" ]]; then
     echo "setting up ipython"
-    if [[ -n "$(bash -c 'which pip')" ]]; then
-        pip install ipython
-    elif [[ -n "$(bash -c 'which pip3')" ]]; then
-        pip3 install ipython
-    fi
+    pipx install ipython
 fi 
 
 ### ncdu
