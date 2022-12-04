@@ -80,8 +80,6 @@ plugins=(
   git
   zsh-autosuggestions
   sudo
-  web-search
-  dirhistory
 )
 
 

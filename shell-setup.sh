@@ -9,6 +9,27 @@
 # * UbuntuMono (https://www.nerdfonts.com/font-downloads) - for NvChad
 
 
+##
+# cargo
+##
+if [[ -z "$(which cargo)" ]]; then
+  echo 'installing cargo'
+  curl https://sh.rustup.rs -sSf | sh
+  echo 'done'
+fi
+
+
+###
+# sd (better sed)
+# ##
+if [[ -z "$(which sd)" ]]; then
+  echo 'installing sd'
+  cargo install sd
+  echo 'done'
+fi
+
+
+
 #######
 # zsh
 ######
