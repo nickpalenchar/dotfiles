@@ -72,7 +72,6 @@ bindkey '^r' _histdb-isearch
 
 for i in $(ls ~/.zsh-scripts/); do
   if [[ "$i" != "zshrc" ]]; then
-    echo sourcing $i
     source ~/.zsh-scripts/$i
   fi
 done
