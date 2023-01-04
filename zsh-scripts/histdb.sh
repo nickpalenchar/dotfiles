@@ -1,0 +1,2 @@
+alias hist=histdb
+

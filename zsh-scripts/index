@@ -1,0 +1,11 @@
+alias ss='source ~/.zshrc'
+# | trackr - TODO remove |
+alias current='cat ~/trackr/current.csv'
+
+
+# |macos|
+restart-audio() { sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`; }
+
+alias hist=histdb:x
+
+
