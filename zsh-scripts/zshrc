@@ -39,7 +39,8 @@ for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
     eval BOLD_$COLOR='$fg_bold[${(L)COLOR}]'
 done
 eval RESET='$reset_color'
-PATH=$PATH:/usr/local/bin/; export PATH
+
+PATH=$PATH:/usr/local/bin/:/usr/local/lib/depot_tools; export PATH
 
 export PATH=~/.local/bin:$PATH
 
