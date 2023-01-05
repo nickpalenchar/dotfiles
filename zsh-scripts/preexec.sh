@@ -1,4 +1,11 @@
 
+# this zshhook checks the command to see if an alias was
+# available, and informs the user if so.
+#
+#   $ alias foo='touch test.txt'
+#   $ touch test.txt
+#   💡 could've been 'foo'
+#   $
 
 preexec() {
   escape_regex() {
