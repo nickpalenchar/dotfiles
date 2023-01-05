@@ -12,3 +12,4 @@ mvd() {
   mv $LAST_DL $DEST/
 }
 
+alias dfs='cd ~/dotfiles'
