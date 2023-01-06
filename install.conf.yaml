@@ -8,6 +8,12 @@
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim
     ~/.vimrc: vimrc
+
+    # quotes!
+    ~/.quotes:
+      path: quotes
+      create: true
+      clean: true
     
 # oh-my-zsh startup and config
     ~/.zshrc: zshrc 
