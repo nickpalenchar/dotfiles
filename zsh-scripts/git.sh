@@ -25,3 +25,4 @@ rrebase() {
   set +u
 }
 
+alias gcm='git checkout main || git checkout master'
