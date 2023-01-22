@@ -12,3 +12,6 @@
 	path = zsh-histdb
 	url = https://github.com/larkery/zsh-histdb.git
 	branch = master
+[submodule "/Users/nick/dotfiles/autosuggest"]
+	path = /Users/nick/dotfiles/autosuggest
+	url = https://github.com/zsh-users/zsh-autosuggestions

@@ -100,4 +100,4 @@ if [[ -z "$(bash -c 'which delta')" ]]; then
 fi
 
 # zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/zsh-scripts/
+git submodule add https://github.com/zsh-users/zsh-autosuggestions $HOME/dotfiles/autosuggest
