@@ -35,6 +35,7 @@
       path: zsh-histdb/**
       glob: true
       create: true
+    ~/.autosuggest: { path: 'autosuggest/**', glob: true, create: true }
     ~/Library/Application Support/JetBrains/PyCharmCE2020.1/keymaps: pycharm/keymaps
     /usr/local/bin/dirjump: dirjump
     /usr/local/bin/dockertags: dockertags
