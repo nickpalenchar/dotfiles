@@ -26,3 +26,6 @@ rrebase() {
 }
 
 alias gcm='git checkout main || git checkout master'
+
+alias gp='git pull'
+
