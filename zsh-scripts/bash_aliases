@@ -2,6 +2,8 @@
 
 # You can alwas see what an alias does with `alias <command>`
 
+
+
 # | shell |
 
 alias c=clear
@@ -9,6 +11,7 @@ alias ll='ls -l'
 alias mv='mv -i'
 alias cdd="cd $HOME/dotfiles"
 alias cdm="cd $HOME/mason"
+alias cdp="cd $HOME/mason/programming"
 cb() { cd $OLDPWD ; }
 
 
