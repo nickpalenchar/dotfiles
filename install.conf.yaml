@@ -8,12 +8,15 @@
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim
     ~/.vimrc: vimrc
-
+    ~/.digrc: digrc
     # quotes!
     ~/.quotes:
       path: quotes
       create: true
       clean: true
+    ~/raycast:
+      path: raycast
+      create: true
     
 # oh-my-zsh startup and config
     ~/.zshrc: zshrc 
