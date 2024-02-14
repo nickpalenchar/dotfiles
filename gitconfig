@@ -45,3 +45,12 @@
   p = 'pull'
   c = 'checkout'
   C = 'commit'
+[trace2]
+	eventTarget = /Users/npalenchar/.gittrace/dump
+	configparams = custom.metacommands
+	eventBrief = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

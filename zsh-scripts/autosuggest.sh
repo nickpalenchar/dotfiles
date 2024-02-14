@@ -1,5 +1,4 @@
 # load the autosuggest plugin
-source ~/.autosuggest/zsh-autosuggestions.zsh
 
 
 # Configure histdb to be searched first

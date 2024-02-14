@@ -78,8 +78,6 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-autosuggestions
-  sudo
 )
 
 
@@ -98,7 +96,6 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -112,10 +109,20 @@ source $ZSH/oh-my-zsh.sh
 #
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.zsh-scripts/zshrc
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# bun completions
+[ -s "/Users/npalenchar/.bun/_bun" ] && source "/Users/npalenchar/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
+
+source ~/.zsh-scripts/zshrc
+
