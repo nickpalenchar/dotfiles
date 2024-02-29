@@ -99,7 +99,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: 'Iosevka Term'
+    #    family: 'Iosevka Term'
+    family: 'Essential PragmataPro'
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -567,7 +568,8 @@ key_bindings:
 #    scrollback:
   - { key: Return, mods: Shift, chars: "\x0b" }
   - { key: Return, mods: Command, chars: "\x0b" }
-#    - { key: H,   mods: Control,   action: ScrollPageUp   }
+  - { key: Right, mods: Command, chars: "\x1BF" }
+  - { key: Left, mods: Command, chars: "\x1BB" }
 #    - { key: T, mods: Control,   action: ScrollPageDown }
 #    - { key: Up,      mods: Control,   action: ScrollToBottom }
 #    - { key: Down,     mods: Control,   action: ScrollToTop    }
