@@ -4,12 +4,14 @@ alias tx='tmux'
 alias cdm='cd ~/mason'
 alias ff=fff
 
+# Usage: mvd [destination=.] [source=~/Downloads]
 # move the last downloaded file to the current directory or $1
 mvd() {
   local DEST=${1:-.}
-  local LAST_DL="$(ls -t | head -n 1)"
+  local LOOKIN=${2:-"$HOME/Downloads"}
+  local LAST_DL="$(ls -t $LOOKIN | head -n 1)"
   echo "> mv $LAST_DL $DEST/"
-  mv $LAST_DL $DEST/
+  mv $LOOKIN/$LAST_DL $DEST/
 }
 
 alias dfs='cd ~/dotfiles'
