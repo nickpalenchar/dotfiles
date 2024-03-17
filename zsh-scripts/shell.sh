@@ -9,7 +9,7 @@ alias ff=fff
 mvd() {
   local DEST=${1:-.}
   local LOOKIN=${2:-"$HOME/Downloads"}
-  local LAST_DL="$(ls -t $LOOKIN | head -n 1)"
+  local LAST_DL="$(/bin/ls -t $LOOKIN | head -n 1)"
   echo "> mv $LAST_DL $DEST/"
   mv $LOOKIN/$LAST_DL $DEST/
 }
