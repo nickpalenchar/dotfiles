@@ -6,9 +6,9 @@
 call plug#begin()
 
 " https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 
-Plug 'charludo/projectmgr.nvim'
+" Plug 'charludo/projectmgr.nvim'
 
 call plug#end()

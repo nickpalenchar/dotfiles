@@ -24,6 +24,17 @@ require("lazy").setup({
       require "options"
     end,
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = '0.1.x',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    }
+  },
+  {
+    'charludo/projectmgr.nvim',
+    lazy = false,
+  },
 
   { import = "plugins" },
 }, lazy_config)
