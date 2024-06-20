@@ -37,6 +37,11 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
 
+---- project manager keymap ----
+-- https://github.com/charludo/projectmgr.nvim
+vim.api.nvim_set_keymap("n", "<leader>p", ":ProjectMgr<CR>", {})
+
+
 vim.schedule(function()
   require "mappings"
 end)
