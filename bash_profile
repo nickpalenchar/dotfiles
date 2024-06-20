@@ -111,3 +111,5 @@ for file in "$HOME/shell-extensions.local/*"; do
   source "$HOME/shell-extensions.local/*"
 done
 
+
+source /Users/nick/.docker/init-bash.sh || true # Added by Docker Desktop

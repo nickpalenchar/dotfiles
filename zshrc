@@ -126,3 +126,5 @@ export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 
 source ~/.zsh-scripts/zshrc
 
+
+source /Users/nick/.docker/init-zsh.sh || true # Added by Docker Desktop
