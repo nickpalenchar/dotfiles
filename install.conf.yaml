@@ -8,7 +8,11 @@
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim
     ~/.vimrc: vimrc
-    ~/.digrc: digrc
+    ~/.config/nvim:
+      path: nvim/**
+      glob: true
+      create: true
+      force: true
     # quotes!
     ~/.quotes:
       path: quotes
@@ -39,10 +43,7 @@
       glob: true
       create: true
     ~/.autosuggest: { path: 'autosuggest/**', glob: true, create: true }
-    ~/Library/Application Support/JetBrains/PyCharmCE2020.1/keymaps: pycharm/keymaps
-    /usr/local/bin/dirjump: dirjump
     /usr/local/bin/dockertags: dockertags
-    ~/.dirjump-aliases: dirjump-aliases 
     /usr/local/bin/:
         path: local/bin/*
         glob: true

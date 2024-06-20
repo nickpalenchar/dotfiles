@@ -82,8 +82,15 @@ if [[ -z "$(which ctop)" ]]; then
 fi
 
 
+## Vim plug
+## https://github.com/junegunn/vim-plug
+
+
 ## MAC OS SETTINGS
 
 # decrease whitespase so icons don't extend and hide under the notch
 defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
 defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
+
+
+
