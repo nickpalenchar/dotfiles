@@ -18,6 +18,13 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
