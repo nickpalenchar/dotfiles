@@ -14,7 +14,12 @@ require("nvim-tree").setup({
   },
   renderer = { 
     root_folder_label = label, 
-    group_empty = label 
+    group_empty = label,
+    icons = {
+      show = {
+        git = false
+      }
+    }
   },
   filters = {
   },
