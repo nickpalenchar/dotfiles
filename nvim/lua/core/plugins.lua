@@ -25,6 +25,11 @@ return require('packer').startup(function(use)
     branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+
+  -- file tabs
+  use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
+--  use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
+  use 'romgrk/barbar.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
