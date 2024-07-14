@@ -13,6 +13,16 @@ _G.previous_buffer = 1
 -- Create an autocommand group for buffer events
 local augroup = vim.api.nvim_create_augroup('BufferSwitch', { clear = true })
 
+
+-- CLOSE TAB/OPEN LAST CLOSED TAB
+
+vim.api.nvim_set_keymap('n', '<A-w>', ':BufferClose<CR>', { noremap = true, silent = true})
+-- Exact sequence as obtained
+vim.api.nvim_set_keymap('n', 'ww', ':BufferRestore<CR>', { noremap = true, silent = true })
+
+
+
+-- TOGGLE TO LAST ACTIVE TAB
 -- Define the function to track the previous buffer
 function TrackPreviousBuffer()
   local current_buffer = vim.api.nvim_get_current_buf()
