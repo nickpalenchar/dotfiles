@@ -2,6 +2,7 @@ require('core.keymaps')
 require('core.options')
 require('core.plugins')
 require('core.plugin_config')
+require('core.custom')
 
 -- Function to open nvim-tree automatically
 local function open_nvim_tree(data)

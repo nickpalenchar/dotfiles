@@ -1,3 +1,6 @@
+-- PLUGIN DEFINITIONS --
+-- all plugins should be set up here.
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -19,6 +22,7 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use { "catppuccin/nvim", as = "catppuccin" }
+  use 'slugbyte/lackluster.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use {
     'nvim-telescope/telescope.nvim',
