@@ -18,8 +18,7 @@ local augroup = vim.api.nvim_create_augroup('BufferSwitch', { clear = true })
 
 vim.api.nvim_set_keymap('n', '<A-w>', ':BufferClose<CR>', { noremap = true, silent = true})
 -- Exact sequence as obtained
-vim.api.nvim_set_keymap('n', 'ww', ':BufferRestore<CR>', { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap('n', '^[[27;6;87]', ':BufferRestore<CR>', { noremap = true, silent = true })
 
 
 -- TOGGLE TO LAST ACTIVE TAB

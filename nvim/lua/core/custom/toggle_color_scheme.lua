@@ -2,7 +2,7 @@
 local function set_colorscheme()
   if vim.fn.mode() == 'n' then
     vim.cmd('colorscheme lackluster')
-  else
+  elseif vim.fn.mode() == 'i' then
     vim.cmd('colorscheme catppuccin-mocha')
   end
 end
@@ -15,9 +15,3 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   callback = set_colorscheme
 })
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  group = augroup,
-  pattern = '*',
-  callback = set_colorscheme
-})
-  
