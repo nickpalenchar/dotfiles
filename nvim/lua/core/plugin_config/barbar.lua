@@ -16,10 +16,15 @@ local augroup = vim.api.nvim_create_augroup('BufferSwitch', { clear = true })
 
 -- CLOSE TAB/OPEN LAST CLOSED TAB
 
-vim.api.nvim_set_keymap('n', '<A-w>', ':BufferClose<CR>', { noremap = true, silent = true})
+map('n', '<A-w>', ':BufferClose<CR>', { noremap = true, silent = true})
 -- Exact sequence as obtained
-vim.api.nvim_set_keymap('n', '^[[27;6;87]', ':BufferRestore<CR>', { noremap = true, silent = true })
+map('n', '^[[27;6;87]', ':BufferRestore<CR>', { noremap = true, silent = true })
 
+-- Move to prev/next
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 
 -- TOGGLE TO LAST ACTIVE TAB
 -- Define the function to track the previous buffer
@@ -46,5 +51,5 @@ function BufferLast()
 end
 
 -- Optional: Map a key to print the previous buffer number for debugging
-vim.api.nvim_set_keymap('n', '<A-Tab>', ':lua BufferLast()<CR>', { noremap = true, silent = true })
+map('n', '<A-Tab>', ':lua BufferLast()<CR>', { noremap = true, silent = true })
 

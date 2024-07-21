@@ -20,3 +20,7 @@
 ## Editor Commands
 
 - `yy`: duplicate current line
+
+### Text manipulation
+- (visual) `<L>n` select all occurances of visually selected text
+- (visual) `<L>r` replace all selected occurances with new text
