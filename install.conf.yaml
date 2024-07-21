@@ -21,6 +21,7 @@
     ~/raycast:
       path: raycast
       create: true
+    ~/Library/Preferences/com.googlecode.iterm2.plist: iterm2.conf.plist
     
 # oh-my-zsh startup and config
     ~/.zshrc: zshrc 
