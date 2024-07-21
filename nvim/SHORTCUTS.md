@@ -16,6 +16,10 @@
 - `<A-Tab>` switch to previously viewed tab (toggle) [custom plugin_core/barbar.lua]
 - `ww` open previously closed tab
 
+## Find/Replace
+- `<L>fg` - opens telescope findgrep
+- `<C-q>` - opens results in quickfix
+- (in quickfix) `d` - remove current result (no undo!)
 
 ## Editor Commands
 
@@ -24,3 +28,10 @@
 ### Text manipulation
 - (visual) `<L>n` select all occurances of visually selected text
 - (visual) `<L>r` replace all selected occurances with new text
+
+#### Cursor duplication
+
+> see https://github.com/mg979/vim-visual-multi/wiki/Quick-start
+
+- (normal) <C-down> duplicate cursor down
+- (normal) <C-up> duplicate cursor up

@@ -30,6 +30,45 @@ require('telescope').setup{
   file_ignore_patterns = { "node%modules/.*" }
 }
 
+-- Remove file from quickfix list
+function RemoveQF()
+    local qflist = vim.fn.getqflist()
+    local current_line = vim.fn.line('.')
+    if current_line >= 0 and current_line < #qflist then
+        local current_buffer_name = vim.api.nvim_buf_get_name(0)
+        table.remove(qflist, current_line)
+        vim.fn.setqflist(qflist, 'r')
+        -- Adjust cursor position
+        if current_line >= #qflist then
+            vim.cmd('normal! G')
+        else
+            vim.cmd('normal! ' .. (current_line) .. 'G')
+        end
+        print("Removed entry for buffer: " .. current_buffer_name)
+    end
+end
+
+vim.api.nvim_create_user_command('RemoveQF', function()
+    RemoveQF()
+end, {})
+
+vim.api.nvim_create_user_command('RemoveQF', function()
+    RemoveQF()
+end, {})
+
+vim.api.nvim_create_augroup("QuickfixMapping", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function()
+        vim.api.nvim_buf_set_keymap(0, "n", "d", ":RemoveQF<CR>", { noremap = true, silent = true })
+    end,
+    group = "QuickfixMapping",
+})
+
+
+
+-- setup
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<c-p>', builtin.find_files, {})
