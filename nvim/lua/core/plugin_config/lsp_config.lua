@@ -1,6 +1,9 @@
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = {'basedpyright'}
+  ensure_installed = {
+    'basedpyright',
+    'lua_ls'
+  }
 })
 
 require("mason-lspconfig").setup_handlers {
