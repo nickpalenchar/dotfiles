@@ -1,21 +1,36 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.opt.backspace = '2'
-vim.opt.showcmd = true
-vim.opt.laststatus = 2
-vim.opt.autowrite = true
-vim.opt.cursorline = true
-vim.opt.autoread = true
+local opt = vim.opt
+
+opt.backspace = '2'
+opt.showcmd = true
+opt.laststatus = 2
+opt.autowrite = true
+opt.autoindent = true
+opt.cursorline = true
+opt.autoread = true
+opt.relativenumber = true
 
 -- use spaces for tabs and whatnot
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.shiftround = true
-vim.opt.expandtab = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.shiftround = true
+opt.expandtab = true
 
 vim.cmd [[ set noswapfile ]]
 vim.cmd [[ set termguicolors ]]
+opt.background = "dark"
 
 --Line numbers
 vim.wo.number = true
+
+-- Search Settings
+opt.ignorecase = true
+opt.smartcase = true -- if there's upper casing in search, assume case sensitive
+
+-- backspace
+opt.backspace = "indent,eol,start"
+
+-- use system clipboard
+opt.clipboard:append('unnamedplus')

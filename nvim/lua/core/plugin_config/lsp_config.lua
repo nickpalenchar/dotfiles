@@ -16,7 +16,6 @@ require("mason-lspconfig").setup_handlers {
     -- Next, you can provide a dedicated handler for specific servers.
     -- For example, a handler override for the `rust_analyzer`:
     ["basedpyright"] = function()
-      print('setting up basedpyright')
       require('lspconfig').basedpyright.setup {
         capabilities = require('cmp_nvim_lsp').default_capabilities(),
         settings = {
@@ -28,4 +27,15 @@ require("mason-lspconfig").setup_handlers {
       }
   }
     end,
+  ["lua_ls"] = function()
+    require('lspconfig').lua_ls.setup {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim' }
+          }
+        }
+      }
+    }
+  end,
 }
