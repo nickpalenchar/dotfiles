@@ -26,7 +26,7 @@ require("mason-lspconfig").setup_handlers {
         }
       }
   }
-    end,
+  end,
   ["lua_ls"] = function()
     require('lspconfig').lua_ls.setup {
       settings = {
@@ -38,4 +38,26 @@ require("mason-lspconfig").setup_handlers {
       }
     }
   end,
+  ["pyright"] = function()
+    require("lspconfig").pyright.setup({
+      on_attach = function(client, bufnr)
+        local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+        buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+      end,
+      settings = {
+        python = {
+          analysis = {
+            typeCheckingMode = "off",
+        }
+      }
+      }
+    })
+  end,
+  ["mypy"] = function()
+    require("lspconfig").mypy.setup({
+      cmd = { "mypy", "--ignore-missing-imports" },
+      filetypes = { "python" },
+      root_dir = require("lspconfig").util.root_pattern(".git", "mypy.ini", "setup.cfg", "pyproject.toml"),
+    })
+  end
 }
