@@ -21,30 +21,25 @@
     ~/raycast:
       path: raycast
       create: true
-    ~/Library/Preferences/com.googlecode.iterm2.plist: iterm2.conf.plist
-    
+
+# NEW
+    ~/.zshrc: conf/zsh/zshrc
+    ~/.oh-my-zsh: 
+      path: conf/zsh/oh-my-zsh/**
+      create: true
+      glob: true
+    ~/.p10k.zsh: conf/zsh/p10k.zsh
+
 # oh-my-zsh startup and config
-    ~/.zshrc: zshrc 
+#~/.zshrc: zshrc 
     ~/.zsh-scripts: 
       path: zsh-scripts
       create: true
       clean: true
-    ~/.oh-my-zsh:
-      path: oh-my-zsh/**
-      glob: true
-      create: true
-      clean: true
-    ~/.zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.alacritty.yml: alacritty.yml
     ~/.gitignore_global: gitignore_global
     ~/.gitattributes_global: gitattributes_global
     ~/.gitconfig: gitconfig
-    ~/.zsh-histdb:
-      path: zsh-histdb/**
-      glob: true
-      create: true
-    ~/.autosuggest: { path: 'autosuggest/**', glob: true, create: true }
-    /usr/local/bin/dockertags: dockertags
     /usr/local/bin/:
         path: local/bin/*
         glob: true

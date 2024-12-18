@@ -15,3 +15,6 @@
 [submodule "/Users/nick/dotfiles/autosuggest"]
 	path = /Users/nick/dotfiles/autosuggest
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "/Users/npalenchar/dotfiles/autosuggest"]
+	path = /Users/npalenchar/dotfiles/autosuggest
+	url = https://github.com/zsh-users/zsh-autosuggestions
