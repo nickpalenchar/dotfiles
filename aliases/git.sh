@@ -5,6 +5,9 @@ alias gs='git status'
 alias grbc='git rebase --continue'
 alias M='git checkout main'
 
+alias gd='git diff'
+alias gds='git diff --staged'
+
 function gpr () {
   local current_branch="$(git rev-parse --abbrev-ref HEAD)"
   echo "Pushing to branch [$current_branch]"
