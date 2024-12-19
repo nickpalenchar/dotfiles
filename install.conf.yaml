@@ -29,6 +29,10 @@
       create: true
       glob: true
     ~/.p10k.zsh: conf/zsh/p10k.zsh
+    ~/.aliases:
+      path: aliases/*
+      glob: true
+      create: true
 
 # oh-my-zsh startup and config
 #~/.zshrc: zshrc 
