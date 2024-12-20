@@ -21,3 +21,6 @@
 [submodule "conf/zsh/oh-my-zsh/custom/themes/powerlevel10k"]
 	path = conf/zsh/oh-my-zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "conf/zsh/oh-my-zsh/custom/plugins/zsh-nvm"]
+	path = conf/zsh/oh-my-zsh/custom/plugins/zsh-nvm
+	url = https://github.com/lukechilds/zsh-nvm

@@ -4,6 +4,9 @@
 
 - clean: ['~']
 
+- create:
+  - ~/.zsh_dirhistory
+
 - link:
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim
@@ -31,6 +34,10 @@
     ~/.p10k.zsh: conf/zsh/p10k.zsh
     ~/.aliases:
       path: aliases/*
+      glob: true
+      create: true
+    ~/.zsh-hooks:
+      path: conf/zsh/hooks/*
       glob: true
       create: true
 

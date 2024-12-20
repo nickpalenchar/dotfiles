@@ -4,6 +4,7 @@ alias gs='git status'
 
 alias grbc='git rebase --continue'
 alias M='git checkout main'
+alias g..='git checkout -'
 
 alias gd='git diff'
 alias gds='git diff --staged'
