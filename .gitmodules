@@ -24,3 +24,6 @@
 [submodule "conf/zsh/oh-my-zsh/custom/plugins/zsh-nvm"]
 	path = conf/zsh/oh-my-zsh/custom/plugins/zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm
+[submodule "conf/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+	path = conf/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
