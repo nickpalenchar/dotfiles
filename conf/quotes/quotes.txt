@@ -88,3 +88,6 @@ Environment Tips
 
 💡 Switch to the main git branch with `M`
 Environment Tips
+
+💡 Add more tips with a 2-line entry in ~/.quotes/quotes.txt
+Environment Tips

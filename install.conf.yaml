@@ -21,10 +21,7 @@
       create: true
       force: true
     # quotes!
-    ~/.quotes:
-      path: quotes
-      create: true
-      clean: true
+
     ~/raycast:
       path: raycast
       create: true
@@ -42,9 +39,15 @@
       create: true
     ~/.config/karabiner:
       path: conf/karabiner/*
+      link: true
+      force: true
       glob: true
     ~/.zsh-hooks:
       path: conf/zsh/hooks/*
+      glob: true
+      create: true
+    ~/.quotes:
+      path: conf/quotes/*
       glob: true
       create: true
 
