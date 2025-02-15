@@ -79,3 +79,12 @@ Leo Tolstoy (War and Peace)
 
 The first thing that gives life meaning is a project that demands your attention.
 Viktor Frankl (Man's Search for Meaning)
+
+💡 Open Alacritty with Cmd+Shift+T
+Environment Tips
+
+💡 Auto rebase on main with `rbM`
+Environment Tips
+
+💡 Switch to the main git branch with `M`
+Environment Tips

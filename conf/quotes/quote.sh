@@ -27,13 +27,13 @@ quotes() {
 
   quote="$(echo $quote | fold -w 40 -s)"
 
-  printf "\n\e[3m\e[90m"
+  printf "\n\e[2m\e[3m"
   while IFS= read -r string; do
     printf "    $string\n"
   done <<< "$quote"
-  printf "\e[0m\n"
+  printf "\e[0m"
 
-  printf  "  \e[1m\e[90m --$author\e[0m\n\n"
+  printf  "  \n\e[2m --$author\e[0m\n\n"
 
 }
 
