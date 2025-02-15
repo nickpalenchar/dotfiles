@@ -6,7 +6,7 @@
 
 - create:
   - ~/.zsh_dirhistory
-
+  - ~/.logs
 
 - shell:
   - [git submodule init]
@@ -31,7 +31,7 @@
 
 # NEW
     ~/.zshrc: conf/zsh/zshrc
-    ~/.oh-my-zsh: 
+    ~/.oh-my-zsh:
       path: conf/zsh/oh-my-zsh/**
       create: true
       glob: true
@@ -40,6 +40,9 @@
       path: aliases/*
       glob: true
       create: true
+    ~/.config/karabiner:
+      path: conf/karabiner/*
+      glob: true
     ~/.zsh-hooks:
       path: conf/zsh/hooks/*
       glob: true

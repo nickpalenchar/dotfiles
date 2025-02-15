@@ -12,4 +12,4 @@ mcd () {
 }
 
 
-alias xx='exit'
+alias ex='exit'
