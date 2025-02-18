@@ -91,3 +91,6 @@ Environment Tips
 
 💡 Add more tips with a 2-line entry in ~/.quotes/quotes.txt
 Environment Tips
+
+💡 Shell history is saved under ~/.logs (ignore shell history with NOLOG=1)
+Environment Tips
