@@ -140,3 +140,4 @@ source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export TRELLO_CLI_ENABLE_CACHE=1
