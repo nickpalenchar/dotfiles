@@ -44,7 +44,6 @@
       link: true
       force: true
       glob: true
-    ~/.docker/init-zsh.sh: conf/docker/init-zsh.sh
     ~/.zsh-hooks:
       path: conf/zsh/hooks/*
       glob: true
@@ -53,6 +52,7 @@
       path: conf/quotes/*
       glob: true
       create: true
+    ~/.branch-selector.sh: conf/git/branch-selector.sh
 
 # oh-my-zsh startup and config
 #~/.zshrc: zshrc 

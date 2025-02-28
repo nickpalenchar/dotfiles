@@ -94,3 +94,6 @@ Environment Tips
 
 💡 Shell history is saved under ~/.logs (ignore shell history with NOLOG=1)
 Environment Tips
+
+💡Unstage a file in git with `git unstg <file>`
+Environment Tips

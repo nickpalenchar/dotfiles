@@ -8,10 +8,12 @@
     light = false
 
 [diff]
-    colorMoved = default
+	colorMoved = plain
+	algorithm = histogram
 
 [push]
     defalut = upstream
+	autoSetupRemote = true
 
 [pretty]
     line = "%C(auto)%h %<|(60,trunc)%s %C(green)%ad%C(auto)%d"
@@ -26,7 +28,9 @@
 [alias]
     ad = add
     last = log -1 HEAD
-    lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 17 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+    ch = ! $HOME/.branch-selector.sh
+    lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | 	grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 17 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+
     llb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10|
     dif = !git diff ':(exclude)package-lock.json'
 
@@ -38,7 +42,7 @@
 	conflictstyle = diff3
 
 [alias]
-  unstage = 'reset HEAD --'
+  unstg = 'reset HEAD --'
   p = 'pull'
   c = 'checkout'
   C = 'commit'
@@ -47,3 +51,13 @@
 	eventBrief = true
 	eventNesting = 1
 	configparams = custom.metacommands
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[fetch]
+	pruneTags = true
+[help]
+	autocorrect = prompt
