@@ -2,7 +2,7 @@
 
 # Set project path
 BRANCH_SELECTOR_DIR="$HOME/git-branch-selector"
-MENU_SCRIPT="$BRANCH_SELECTOR_DIR/src/menu.ts"
+MENU_SCRIPT="$BRANCH_SELECTOR_DIR/src/menu.js"
 
 # Check if branch selector exists; if not, clone the repository
 if [ ! -f "$MENU_SCRIPT" ]; then
@@ -15,4 +15,4 @@ if [ ! -f "$MENU_SCRIPT" ]; then
     npm i
 fi
 
-bun run "$MENU_SCRIPT"
+node "$MENU_SCRIPT"
