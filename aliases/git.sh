@@ -9,6 +9,7 @@ alias g..='git checkout -'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gl='git pull'
+alias gca='git commit --amend'
 
 function gpr () {
   local current_branch="$(git rev-parse --abbrev-ref HEAD)"

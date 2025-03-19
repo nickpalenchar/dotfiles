@@ -13,6 +13,8 @@
 - shell:
   - [git submodule init]
   - [git submodule update --recursive]
+  - [git config --global push.default current]
+  - ['test "$(basename $SHELL)" = "bash" || chsh -s $(which bash)', Setting bash as default shell]
 
 - link:
     ~/.tmux.conf: tmux.conf
