@@ -17,11 +17,27 @@ setopt hist_expire_dups_first # Expire duplicate commands first
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# Prompt settings (New line, background colors, single triangle at the end)
+# Prompt settings (New line, background colors, Git branch, and triangle at the end)
 NEWLINE=$'\n'
 TRIANGLE=""  # Nerd Font Powerline triangle
 
-PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black} %~ %k%F{yellow}$TRIANGLE%f "
+# Set up precmd hook to update prompt before each command
+precmd() {
+  __PROMPT_LAST_COLOR="yellow"
+
+  ## Display current git branch if user is in a git repo
+  GIT_BRANCH=""
+  if command -v git &> /dev/null; then  # Check if git is installed
+      local branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+      if [[ -n "$branch" ]]; then
+          # Return both the branch info and set the color
+          GIT_BRANCH="%K{magenta} $branch %k"
+          __PROMPT_LAST_COLOR="magenta"
+      fi
+  fi
+  # Then construct the prompt using the updated color
+  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black}  %~ %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
+}
 
 # Alias setup
 alias ll="ls -lah"
