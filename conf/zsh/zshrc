@@ -19,7 +19,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Prompt settings (New line, background colors, Git branch, and triangle at the end)
 NEWLINE=$'\n'
-TRIANGLE=""  # Nerd Font Powerline triangle
+TRIANGLE=""  # Nerd Font Powerline triangle
 
 # Set up precmd hook to update prompt before each command
 precmd() {
@@ -31,12 +31,12 @@ precmd() {
       local branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
       if [[ -n "$branch" ]]; then
           # Return both the branch info and set the color
-          GIT_BRANCH="%K{magenta} $branch %k"
+          GIT_BRANCH="%K{magenta} $branch %k"
           __PROMPT_LAST_COLOR="magenta"
       fi
   fi
   # Then construct the prompt using the updated color
-  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black}  %~ %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
+  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black}  %~ %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
 }
 
 # Alias setup
@@ -46,7 +46,41 @@ alias gs="git status"
 alias ..="cd .."
 alias ...="cd ../.."
 alias vimrc="vim ~/.zshrc"
+alias tf="terraform"
 
 # Fix pasting issues in terminal
 setopt no_nomatch
 setopt auto_cd # Allows you to type a directory name to `cd` into it
+
+### Autosource nvm ###
+load-nvmrc() {
+  local nvmrc_path="$(pwd)/.nvmrc"
+
+  # Check if there is a .nvmrc file
+  if [[ -f "$nvmrc_path" ]]; then
+    local node_version="$(nvm version)"
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  # If no .nvmrc file but node version is not default
+  elif [[ "$node_version" != "$(nvm version default)" ]]; then
+    nvm use default
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+
+### nvm ###
+export NVM_DIR="$HOME/.nvm"
+([ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh")
