@@ -46,7 +46,18 @@ alias gs="git status"
 alias ..="cd .."
 alias ...="cd ../.."
 alias vimrc="vim ~/.zshrc"
+alias M="git checkout main"
 alias tf="terraform"
+# Git push to current branch
+gpr() {
+  local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [[ -n "$current_branch" ]]; then
+    git push origin "$current_branch"
+  else
+    echo "Not in a git repository"
+  fi
+}
+
 
 # Fix pasting issues in terminal
 setopt no_nomatch
