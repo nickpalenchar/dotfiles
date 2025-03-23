@@ -40,14 +40,19 @@ precmd() {
 }
 
 # Alias setup
+alias c='clear'
 alias ll="ls -lah"
 alias la="ls -A"
 alias gs="git status"
+alias gl="git pull"
 alias ..="cd .."
 alias ...="cd ../.."
+alias ex="exit"
 alias vimrc="vim ~/.zshrc"
 alias M="git checkout main"
 alias tf="terraform"
+alias gd="git diff"
+alias gds="git diff --staged"
 # Git push to current branch
 gpr() {
   local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
@@ -58,10 +63,12 @@ gpr() {
   fi
 }
 
-
 # Fix pasting issues in terminal
 setopt no_nomatch
 setopt auto_cd # Allows you to type a directory name to `cd` into it
+
+# Load add-zsh-hook
+autoload -Uz add-zsh-hook
 
 ### Autosource nvm ###
 load-nvmrc() {
@@ -77,21 +84,17 @@ load-nvmrc() {
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
       nvm use
     fi
-  # If no .nvmrc file but node version is not default
-  elif [[ "$node_version" != "$(nvm version default)" ]]; then
-    nvm use default
   fi
 }
 
 add-zsh-hook chpwd load-nvmrc
 
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-
 ### nvm ###
 export NVM_DIR="$HOME/.nvm"
 ([ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh")
+
+source /Users/nick/.docker/init-zsh.sh || true # Added by Docker Desktop
