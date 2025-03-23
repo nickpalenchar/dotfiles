@@ -30,7 +30,6 @@ precmd() {
   local SPLIT_PATH=(${(s:/:)pwd_path})
   local num_components=${#SPLIT_PATH[@]}
   if [[ $num_components -lt 4 ]]; then
-    echo nothing to do
     CURRENT_DIR="%~"
   else
     local result=""
@@ -56,9 +55,9 @@ precmd() {
           
           # Count staged files (lines starting with A, M, D, R, C)
           local staged_count=$(echo "$git_status" | grep -E '^[AMDRC]' | wc -l | tr -d '[:space:]')
+          local dirty_count=$(echo "$git_status" | grep -E '^ [AMDRC]' | wc -l | tr -d '[:space:]')
           
-          # Check if working directory is dirty (any status output)
-          if [[ -n "$git_status" ]]; then
+          if [[ "$dirty_count" -gt 0 ]]; then
               dirty="*"
           fi
           
@@ -67,7 +66,11 @@ precmd() {
           fi
           
           # Return both the branch info and set the color
-          GIT_BRANCH="%K{magenta} $branch$dirty$staged %k"
+          GIT_BRANCH="%K{magenta} ${branch}"
+          if [[ -n "${dirty}${staged}" ]]; then
+            GIT_BRANCH+=" ${staged}${dirty}"
+          fi
+          GIT_BRANCH+=" %k"
           __PROMPT_LAST_COLOR="magenta"
       fi
   fi
