@@ -19,7 +19,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Prompt settings (New line, background colors, Git branch, and triangle at the end)
 NEWLINE=$'\n'
-TRIANGLE=""  # Nerd Font Powerline triangle
+TRIANGLE=''  # Nerd Font Powerline triangle
 
 # Set up precmd hook to update prompt before each command
 precmd() {
@@ -30,16 +30,34 @@ precmd() {
   if command -v git &> /dev/null; then  # Check if git is installed
       local branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
       if [[ -n "$branch" ]]; then
+          # Get status of working directory and staged files in one call
+          local dirty=""
+          local staged=""
+          local git_status="$(git status --porcelain 2>/dev/null)"
+          
+          # Count staged files (lines starting with A, M, D, R, C)
+          local staged_count=$(echo "$git_status" | grep -E '^[AMDRC]' | wc -l | tr -d '[:space:]')
+          
+          # Check if working directory is dirty (any status output)
+          if [[ -n "$git_status" ]]; then
+              dirty="*"
+          fi
+          
+          if [[ $staged_count -gt 0 ]]; then
+              staged="+${staged_count}"
+          fi
+          
           # Return both the branch info and set the color
-          GIT_BRANCH="%K{magenta} $branch %k"
+          GIT_BRANCH="%K{magenta} $branch$dirty$staged %k"
           __PROMPT_LAST_COLOR="magenta"
       fi
   fi
   # Then construct the prompt using the updated color
-  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black}  %~ %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
+  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black} %~ %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
 }
 
 # Alias setup
+alias ss="source ~/.zshrc"
 alias c='clear'
 alias ll="ls -lah"
 alias la="ls -A"
@@ -88,6 +106,7 @@ load-nvmrc() {
 }
 
 add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
