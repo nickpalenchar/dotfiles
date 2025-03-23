@@ -25,7 +25,26 @@ TRIANGLE=''  # Nerd Font Powerline triangle
 precmd() {
   __PROMPT_LAST_COLOR="yellow"
 
-  ## Display current git branch if user is in a git repo
+  ## PROMPT:current working directory
+  local pwd_path="${PWD/#$HOME/~}"
+  local SPLIT_PATH=(${(s:/:)pwd_path})
+  local num_components=${#SPLIT_PATH[@]}
+  if [[ $num_components -lt 4 ]]; then
+    echo nothing to do
+    CURRENT_DIR="%~"
+  else
+    local result=""
+    for part in ${SPLIT_PATH:0:-3}; do
+      if [[ $part == "~" ]]; then
+        result+="~"
+      else
+        result+="/${part:0:1}"
+      fi
+    done
+    CURRENT_DIR="${result}/${SPLIT_PATH[-3]}/${SPLIT_PATH[-2]}/${SPLIT_PATH[-1]}"
+  fi
+
+  ## PROMPT:git-display
   GIT_BRANCH=""
   if command -v git &> /dev/null; then  # Check if git is installed
       local branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
@@ -52,8 +71,8 @@ precmd() {
           __PROMPT_LAST_COLOR="magenta"
       fi
   fi
-  # Then construct the prompt using the updated color
-  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black} %~ %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
+
+  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black} $CURRENT_DIR %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
 }
 
 # Alias setup
@@ -117,3 +136,14 @@ export NVM_DIR="$HOME/.nvm"
 ([ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh")
 
 source /Users/nick/.docker/init-zsh.sh || true # Added by Docker Desktop
+
+# bun completions
+[ -s "/Users/nick/.bun/_bun" ] && source "/Users/nick/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
