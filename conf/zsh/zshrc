@@ -1,143 +1,159 @@
-~/.quotes/quote.sh ~/.quotes/quotes.txt
+# Set paths (Apple Silicon Homebrew first)
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin"
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Set default editor to Vim
+export EDITOR="vim"
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# History settings
+HISTFILE=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+setopt appendhistory        # Append history instead of overwriting
+setopt sharehistory         # Share command history between sessions
+setopt hist_ignore_all_dups # Ignore duplicate commands
+setopt hist_expire_dups_first # Expire duplicate commands first
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Enable case-insensitive autocompletion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# Prompt settings (New line, background colors, Git branch, and triangle at the end)
+NEWLINE=$'\n'
+TRIANGLE=''  # Nerd Font Powerline triangle
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# Set up precmd hook to update prompt before each command
+precmd() {
+  __PROMPT_LAST_COLOR="yellow"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+  ## PROMPT:current working directory
+  local pwd_path="${PWD/#$HOME/~}"
+  local SPLIT_PATH=(${(s:/:)pwd_path})
+  local num_components=${#SPLIT_PATH[@]}
+  if [[ $num_components -lt 4 ]]; then
+    CURRENT_DIR="%~"
+  else
+    local result=""
+    for part in ${SPLIT_PATH:0:-3}; do
+      if [[ $part == "~" ]]; then
+        result+="~"
+      else
+        result+="/${part:0:1}"
+      fi
+    done
+    CURRENT_DIR="${result}/${SPLIT_PATH[-3]}/${SPLIT_PATH[-2]}/${SPLIT_PATH[-1]}"
+  fi
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+  ## PROMPT:git-display
+  GIT_BRANCH=""
+  if command -v git &> /dev/null; then  # Check if git is installed
+      local branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+      if [[ -n "$branch" ]]; then
+          # Get status of working directory and staged files in one call
+          local dirty=""
+          local staged=""
+          local git_status="$(git status --porcelain 2>/dev/null)"
+          
+          local staged_count=$(echo "$git_status" | grep -E '^[AMDRC]' | wc -l | tr -d '[:space:]')
+          local dirty_count=$(echo "$git_status" | grep -E '^.[AMDRC]' | wc -l | tr -d '[:space:]')
+          
+          if [[ "$dirty_count" -gt 0 ]]; then
+              dirty="*"
+          fi
+          
+          if [[ $staged_count -gt 0 ]]; then
+              staged="+${staged_count}"
+          fi
+          
+          # Return both the branch info and set the color
+          GIT_BRANCH="%K{magenta} ${branch}"
+          if [[ -n "${dirty}${staged}" ]]; then
+            GIT_BRANCH+=" ${staged}${dirty}"
+          fi
+          GIT_BRANCH+=" %k"
+          __PROMPT_LAST_COLOR="magenta"
+      fi
+  fi
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+  PROMPT="$NEWLINE%F{black}%K{blue} %n %k%K{yellow}%F{black} $CURRENT_DIR %k%F{yellow}%f%K${GIT_BRANCH}%F{$__PROMPT_LAST_COLOR}$TRIANGLE %f"
+}
 
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+# Alias setup
+mcd() { mkdir "$1" && cd "$1"; }
+alias dfs="cd ~/dotfiles"
+alias cdp="cd ~/mason/programming"
+alias ss="source ~/.zshrc"
+alias c='clear'
+alias ll="ls -lah"
+alias la="ls -A"
+alias gs="git status"
+alias gl="git pull"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ex="exit"
+alias vimrc="vim ~/.zshrc"
+alias M="git checkout main"
+alias Ml="git checkout main && git pull"
+alias tf="terraform"
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+## git aliases
+alias gcb="git checkout -b"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gca="git commit --amend"
+# Git push to current branch
+gpr() {
+  local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [[ -n "$current_branch" ]]; then
+    git push origin "$current_branch"
+  else
+    echo "Not in a git repository"
+  fi
+}
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Fix pasting issues in terminal
+setopt no_nomatch
+setopt auto_cd # Allows you to type a directory name to `cd` into it
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Load add-zsh-hook
+autoload -Uz add-zsh-hook
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+### Autosource nvm ###
+load-nvmrc() {
+  local nvmrc_path="$(pwd)/.nvmrc"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+  # Check if there is a .nvmrc file
+  if [[ -f "$nvmrc_path" ]]; then
+    local node_version="$(nvm version)"
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  fi
+}
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  zsh-nvm
-  zsh-autosuggestions
-)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#415b50"
-
-export NVM_LAZY_LOAD=true
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-for file in ~/.aliases/*.sh; do
-  [ -f "$file" ] && source "$file"
-done
-
-
-source ~/.zsh-hooks/*.sh
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop
+### nvm ###
+export NVM_DIR="$HOME/.nvm"
+([ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh")
+
+source /Users/nick/.docker/init-zsh.sh || true # Added by Docker Desktop
 
 # bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+[ -s "/Users/nick/.bun/_bun" ] && source "/Users/nick/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export TRELLO_CLI_ENABLE_CACHE=1
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -9,10 +9,12 @@
   - ~/.logs
   - ~/.config/karabiner
   - ~/.docker
+  - ~/.zsh-scripts
 
 - shell:
   - [git submodule init]
   - [git submodule update --recursive]
+  - [git config --global push.default current]
 
 - link:
     ~/.tmux.conf: tmux.conf
@@ -34,7 +36,6 @@
       path: conf/zsh/oh-my-zsh/**
       create: true
       glob: true
-    ~/.p10k.zsh: conf/zsh/p10k.zsh
     ~/.aliases:
       path: aliases/*
       glob: true
