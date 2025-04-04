@@ -1,18 +1,19 @@
 #!/bin/bash
 
-# Set project path
 BRANCH_SELECTOR_DIR="$HOME/git-branch-selector"
-MENU_SCRIPT="$BRANCH_SELECTOR_DIR/src/menu.ts"
 
-# Check if branch selector exists; if not, clone the repository
-if [ ! -f "$MENU_SCRIPT" ]; then
+if [ -z "$(which git-branch-selector)" ]; then
     echo "Cloning git-branch-selector repository..."
-    git clone git@github.com:nickpalenchar/git-branch-selector.git "$BRANCH_SELECTOR_DIR"
-
-    # Install dependencies
-    echo "Installing dependencies..."
-    cd "$BRANCH_SELECTOR_DIR" || exit 1
-    npm i
+    if [ ! -d "$BRANCH_SELECTOR_DIR" ]; then
+        git clone git@github.com:nickpalenchar/git-branch-selector.git "$BRANCH_SELECTOR_DIR"
+    fi
+    CURRENT_DIR=$(pwd)
+    cd "$BRANCH_SELECTOR_DIR/package"
+    echo "Building git-branch-selector..."
+    go build -o git-branch-selector
+    echo "Copying git-branch-selector to /usr/local/bin..."
+    sudo mv git-branch-selector /usr/local/bin/
+    cd "$CURRENT_DIR"
 fi
 
-bun run "$MENU_SCRIPT"
+git-branch-selector

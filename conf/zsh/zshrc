@@ -53,9 +53,8 @@ precmd() {
           local staged=""
           local git_status="$(git status --porcelain 2>/dev/null)"
           
-          # Count staged files (lines starting with A, M, D, R, C)
           local staged_count=$(echo "$git_status" | grep -E '^[AMDRC]' | wc -l | tr -d '[:space:]')
-          local dirty_count=$(echo "$git_status" | grep -E '^ [AMDRC]' | wc -l | tr -d '[:space:]')
+          local dirty_count=$(echo "$git_status" | grep -E '^.[AMDRC]' | wc -l | tr -d '[:space:]')
           
           if [[ "$dirty_count" -gt 0 ]]; then
               dirty="*"
@@ -79,6 +78,9 @@ precmd() {
 }
 
 # Alias setup
+mcd() { mkdir "$1" && cd "$1"; }
+alias dfs="cd ~/dotfiles"
+alias cdp="cd ~/mason/programming"
 alias ss="source ~/.zshrc"
 alias c='clear'
 alias ll="ls -lah"
@@ -90,9 +92,14 @@ alias ...="cd ../.."
 alias ex="exit"
 alias vimrc="vim ~/.zshrc"
 alias M="git checkout main"
+alias Ml="git checkout main && git pull"
 alias tf="terraform"
+
+## git aliases
+alias gcb="git checkout -b"
 alias gd="git diff"
 alias gds="git diff --staged"
+alias gca="git commit --amend"
 # Git push to current branch
 gpr() {
   local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
