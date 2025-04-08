@@ -104,7 +104,7 @@ alias gca="git commit --amend"
 gpr() {
   local current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [[ -n "$current_branch" ]]; then
-    git push origin "$current_branch"
+    git push origin "$current_branch" $@
   else
     echo "Not in a git repository"
   fi
@@ -145,7 +145,7 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_DIR="$HOME/.nvm"
 ([ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh")
 
-source /Users/nick/.docker/init-zsh.sh || true # Added by Docker Desktop
+source /Users/$(whoami)/.docker/init-zsh.sh || true # Added by Docker Desktop
 
 # bun completions
 [ -s "/Users/nick/.bun/_bun" ] && source "/Users/nick/.bun/_bun"
@@ -157,3 +157,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="/Users/npalenchar/.orbit/bin:$PATH"
