@@ -159,3 +159,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH="/Users/npalenchar/.orbit/bin:$PATH"
+
+if [ -f "$HOME/.zshrc-extension" ]; then
+  source "$HOME/.zshrc-extension"
+fi
