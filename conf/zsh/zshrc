@@ -87,6 +87,7 @@ alias ll="ls -lah"
 alias la="ls -A"
 alias gs="git status"
 alias gl="git pull"
+alias g..="git checkout -"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ex="exit"
@@ -94,6 +95,11 @@ alias vimrc="vim ~/.zshrc"
 alias M="git checkout main"
 alias Ml="git checkout main && git pull"
 alias tf="terraform"
+
+## data parsing
+b64() {
+  echo "$1" | base64 -D
+}
 
 ## git aliases
 alias gcb="git checkout -b"
