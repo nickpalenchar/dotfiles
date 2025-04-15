@@ -124,23 +124,15 @@ setopt auto_cd # Allows you to type a directory name to `cd` into it
 autoload -Uz add-zsh-hook
 
 
+### Autosource fnm (nvm alternative) ###
 eval "$(fnm env)"
-### Autosource fm ###
-load-nvmrc(){
-  fnm use --install-if-missing
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    fnm use
+  fi
 }
-
-
-#add-zsh-hook chpwd load-nvmrc
-#load-nvmrc
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-### nvm ###
-export NVM_DIR="$HOME/.nvm"
-([ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh")
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 source /Users/$(whoami)/.docker/init-zsh.sh || true # Added by Docker Desktop
 
