@@ -38,6 +38,7 @@
     unstage = reset HEAD --
     last = log -1 HEAD
     visual = !gitk
+    ch = !git-branch-selector
 
 [help]
     autocorrect = 25 
