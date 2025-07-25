@@ -9,6 +9,11 @@
     ~/.vimrc: src/vimrc
     ~/.zshrc: src/zshrc
     ~/.gitconfig: src/gitconfig
+    ~/.oh-my-zsh: src/oh-my-zsh
+    ~/.zsh-syntax-highlighting: src/zsh-syntax-highlighting
+    ~/.zsh-autosuggestions: src/zsh-autosuggestions
+    ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: src/zsh-autosuggestions
+    ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: src/zsh-syntax-highlighting
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
