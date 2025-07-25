@@ -1,0 +1,56 @@
+" Basic vim configuration
+set nocompatible
+filetype plugin indent on
+syntax on
+
+" Set leader key
+let mapleader = " "
+
+" Basic settings
+set number
+set relativenumber
+set autoindent
+set smartindent
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set backspace=indent,eol,start
+set showmatch
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set wildmenu
+set wildmode=list:longest
+set ruler
+set laststatus=2
+set title
+set visualbell
+set noerrorbells
+set nobackup
+set noswapfile
+set undodir=~/.vim/undo-history
+set undofile
+
+" Color scheme
+set background=dark
+colorscheme default
+
+" Key mappings
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>wq :wq<CR>
+nnoremap <leader>n :nohl<CR>
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" File type specific settings
+autocmd FileType make setlocal noexpandtab
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
