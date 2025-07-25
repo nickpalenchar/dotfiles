@@ -136,6 +136,8 @@ alias gp='git push'
 alias gl='git log --oneline'
 alias gd='git diff'
 
+alias gpr='echo "pushing to [$(git branch --show-current)]" && sleep 1 && git push origin $(git branch --show-current)'
+
 # Development aliases
 alias python='python3'
 alias pip='pip3'
