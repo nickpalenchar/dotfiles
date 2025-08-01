@@ -139,6 +139,8 @@ alias gca='git commit --amend'
 alias gpr='echo "pushing to [$(git branch --show-current)]" && sleep 1 && git push origin $(git branch --show-current)'
 alias gprF='gpr --force'
 
+alias tf='terraform'
+
 # Checkout default branch and pull
 alias Ml='git checkout $(git remote show origin | grep "HEAD branch" | cut -d" " -f5) && git pull'
 
