@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
-ZSH_THEME="agnoster"  # A clean and informative theme
+ZSH_THEME="jonathan" # A clean and informative theme (jonathan, fino)
 
 # Disable auto-update to speed up loading
 DISABLE_AUTO_UPDATE="true"
@@ -11,7 +11,7 @@ DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
 
 # Enable command auto-correction
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Display red dots whilst waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -27,6 +27,44 @@ plugins=(git)
 # Only source Oh My Zsh if it's installed
 if [ -f "$ZSH/oh-my-zsh.sh" ]; then
   source $ZSH/oh-my-zsh.sh
+  # Override Jonathan theme to remove time display
+  if [[ "$ZSH_THEME" == "jonathan" ]]; then
+    PROMPT='${PR_SET_CHARSET}${PR_STITLE}${(e)PR_TITLEBAR}\
+${PR_CYAN}${PR_ULCORNER}${PR_HBAR}${PR_GREY}(\
+${PR_GREEN}%${PR_PWDLEN}<...<%~%<<\
+${PR_GREY})$(virtualenv_prompt_info)$(ruby_prompt_info)${PR_CYAN}${PR_HBAR}${PR_HBAR}${(e)PR_FILLBAR}${PR_HBAR}${PR_GREY}(\
+${PR_CYAN}%(!.%SROOT%s.%n)${PR_GREY}@${PR_GREEN}%m:%l\
+${PR_GREY})${PR_CYAN}${PR_HBAR}${PR_URCORNER}\
+
+${PR_CYAN}${PR_LLCORNER}${PR_BLUE}${PR_HBAR}(\
+${PR_LIGHT_BLUE}%{$reset_color%}$(git_prompt_info)$(git_prompt_status)${PR_BLUE})${PR_CYAN}${PR_HBAR}\
+${PR_HBAR}\
+>${PR_NO_COLOUR} '
+  fi
+  
+  # Prevent virtual environments from overriding the prompt
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+  
+  # Function to restore Oh My Zsh prompt after venv activation
+  function restore_oh_my_zsh_prompt() {
+    if [[ "$ZSH_THEME" == "jonathan" ]]; then
+      PROMPT='${PR_SET_CHARSET}${PR_STITLE}${(e)PR_TITLEBAR}\
+${PR_CYAN}${PR_ULCORNER}${PR_HBAR}${PR_GREY}(\
+${PR_GREEN}%${PR_PWDLEN}<...<%~%<<\
+${PR_GREY})$(virtualenv_prompt_info)$(ruby_prompt_info)${PR_CYAN}${PR_HBAR}${PR_HBAR}${(e)PR_FILLBAR}${PR_HBAR}${PR_GREY}(\
+${PR_CYAN}%(!.%SROOT%s.%n)${PR_GREY}@${PR_GREEN}%m:%l\
+${PR_GREY})${PR_CYAN}${PR_HBAR}${PR_URCORNER}\
+
+${PR_CYAN}${PR_LLCORNER}${PR_BLUE}${PR_HBAR}(\
+${PR_LIGHT_BLUE}%{$reset_color%}$(git_prompt_info)$(git_prompt_status)${PR_BLUE})${PR_CYAN}${PR_HBAR}\
+${PR_HBAR}\
+>${PR_NO_COLOUR} '
+    fi
+  }
+  
+  # Hook to restore prompt after venv activation
+  autoload -U add-zsh-hook
+  add-zsh-hook precmd restore_oh_my_zsh_prompt
 else
   # Fallback to basic zsh setup if Oh My Zsh is not installed
   autoload -Uz compinit
