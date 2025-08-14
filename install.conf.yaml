@@ -14,7 +14,9 @@
     ~/.zsh-autosuggestions: src/zsh-autosuggestions
     ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: src/zsh-autosuggestions
     ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: src/zsh-syntax-highlighting
+    ~/.oh-my-zsh/custom/themes/powerlevel10k: src/powerlevel10k
     ~/.zsh: src/zsh
 
 - shell:
+  - [brew install --cask font-meslo-for-powerlevel10k]
   - [git submodule update --init --recursive, Installing submodules]

@@ -18,9 +18,6 @@
 [submodule "/Users/npalenchar/dotfiles/autosuggest"]
 	path = /Users/npalenchar/dotfiles/autosuggest
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "conf/zsh/oh-my-zsh/custom/themes/powerlevel10k"]
-	path = conf/zsh/oh-my-zsh/custom/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "conf/zsh/oh-my-zsh/custom/plugins/zsh-nvm"]
 	path = conf/zsh/oh-my-zsh/custom/plugins/zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm
@@ -36,3 +33,6 @@
 [submodule "src/zsh-autosuggestions"]
 	path = src/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "src/powerlevel10k"]
+	path = src/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
