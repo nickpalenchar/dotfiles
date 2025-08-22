@@ -1,0 +1,8 @@
+#!/bin/bash
+
+alias dfs='cd ~/dotfiles'
+alias g..='git checkout -'
+
+aliedit() {
+  vim $HOME/dotfiles/src/aliases
+}
