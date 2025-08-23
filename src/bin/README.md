@@ -1,0 +1,1 @@
+These are scripts that automatically get added to $PATH

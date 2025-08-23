@@ -1,0 +1,139 @@
+#!/bin/bash
+
+# Git Strack - Stack/track unstaged files to timestamped directory
+# Add this function to your ~/.bashrc or ~/.zshrc
+# Eventually can be added to git as: git config --global alias.strack '!git-strack'
+
+git-strack-save() {
+    # Check if we're in a git repository
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        echo "Error: Not in a git repository"
+        return 1
+    fi
+
+    # Get the repository root directory
+    local repo_root=$(git rev-parse --show-toplevel)
+    
+    # Create timestamp in format YYYY-MM-DD_HH-MM-SS
+    local timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+    
+    # Create the strack directory path
+    local strack_dir="$repo_root/.strack/$timestamp"
+    
+    # Get list of unstaged files (modified, deleted, and untracked)
+    local modified_files=$(git diff --name-only)
+    local untracked_files=$(git ls-files --others --exclude-standard)
+    
+    # Combine all unstaged files
+    local all_unstaged_files=$(echo -e "$modified_files\n$untracked_files" | grep -v '^$' | sort | uniq)
+    
+    # Check if there are any unstaged files
+    if [ -z "$all_unstaged_files" ]; then
+        echo "No unstaged files found"
+        return 0
+    fi
+    
+    # Create the strack directory
+    mkdir -p "$strack_dir"
+    
+    echo "Stracking unstaged files to: ${strack_dir#$repo_root/}"
+    echo "Files moved:"
+    
+    # Move each file while preserving directory structure
+    while IFS= read -r file; do
+        if [ -n "$file" ] && [ -f "$repo_root/$file" ]; then
+            echo "  $file"
+            
+            # Create directory structure in strack location
+            local dir_path=$(dirname "$file")
+            if [ "$dir_path" != "." ]; then
+                mkdir -p "$strack_dir/$dir_path"
+            fi
+            
+            # Move the file
+            mv "$repo_root/$file" "$strack_dir/$file"
+        fi
+    done <<< "$all_unstaged_files"
+    
+    # Remove any empty directories left behind
+    find "$repo_root" -type d -empty -not -path "$repo_root/.git/*" -not -path "$repo_root/.strack/*" -delete 2>/dev/null || true
+    
+    echo ""
+    echo "✓ Files stracked! Use 'git strack restore $timestamp' to restore"
+    echo "  or manually: cp -r \"$strack_dir\"/* \"$repo_root/\""
+}
+
+# Restore function for convenience
+git-strack-restore() {
+    local timestamp="$1"
+    
+    if [ -z "$timestamp" ]; then
+        echo "Usage: git-strack-restore <timestamp>"
+        echo "Available timestamps:"
+        git-strack-list
+        return 1
+    fi
+    
+    local repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [ $? -ne 0 ]; then
+        echo "Error: Not in a git repository"
+        return 1
+    fi
+    
+    local strack_dir="$repo_root/.strack/$timestamp"
+    
+    if [ ! -d "$strack_dir" ]; then
+        echo "Error: Timestamp '$timestamp' not found"
+        echo "Available timestamps:"
+        git-strack-list
+        return 1
+    fi
+    
+    echo "Restoring files from $timestamp..."
+    cp -r "$strack_dir"/* "$repo_root/"
+    echo "✓ Files restored!"
+}
+
+# List available strack timestamps
+git-strack-list() {
+    local repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [ $? -ne 0 ]; then
+        echo "Error: Not in a git repository"
+        return 1
+    fi
+    
+    local strack_base="$repo_root/.strack"
+    
+    if [ ! -d "$strack_base" ]; then
+        echo "No strack history found"
+        return 0
+    fi
+    
+    echo "Available strack timestamps:"
+    ls -1 "$strack_base" 2>/dev/null | sort -r || echo "No strack history found"
+}
+
+# Main strack function with subcommands
+case "$1" in
+    "restore")
+        git-strack-restore "$2"
+        ;;
+    "list"|"ls")
+        git-strack-list
+        ;;
+    ""|"save")
+        git-strack-save
+        ;;
+    *)
+        echo "Usage: strack [save|restore <timestamp>|list]"
+        echo ""
+        echo "Commands:"
+        echo "  strack          - Save unstaged files (default)"
+        echo "  strack save     - Save unstaged files"
+        echo "  strack restore  - Restore files from timestamp"
+        echo "  strack list     - List available timestamps"
+        ;;
+esac
+
+# For eventual git integration:
+# git config --global alias.strack '!f() { strack "$@"; }; f'
