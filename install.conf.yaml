@@ -1,8 +1,33 @@
+# ┌───────────────┬───────────────────────────────────────────────────────────────────────────────┐
+# │ PARAMETER       │ EXPLANATION                                                                           │
+# ├───────────────────────────────────────────────────────────────────────────────────────────────┤
+# │ path            │ The target for the link (file in dotfiles directory), same as shortcut syntax         │
+# │                 │ (default: null, automatic)                                                            │
+# │ type            │ The type of link to create. Must be either symlink or hardlink (default: symlink)     │
+# │ create          │ When true, create parent directories to the link as needed (default: false)           │
+# │ relink          │ Removes the old link if it's a symlink (default: false)                               │
+# │ force           │ Force removes the old link, file or folder, and forces a new link (default: false)    │
+# │ relative        │ When creating a symlink, use a relative path to the target (default: false, absolute) │
+# │ canonicalize    │ Resolve any symbolic links encountered in the target to symlink to canonical path     |
+# │                 │ (default: true, real paths)                                                           │
+# │ if              │ Execute this in your $SHELL and only link if it is successful                         │
+# │ ignore-missing  │ Do not fail if the target is missing and create the link anyway (default: false)      │
+# │ glob            │ Treat path as a glob pattern, expanding patterns referenced below, linking all files  │
+# │                 │ matched (default: false)                                                              │
+# │ exclude         │ Array of glob patterns to remove from glob matches. Uses same syntax as path.         │
+# │                 │ Ignored if glob is false (default: empty, keep all matches)                           │
+# │ prefix          │ Prepend prefix to basename of each file when linked, when glob is true (default: '')  │
+# └─────────────────┴─────────────────────────────────────────────────────────────────────────────┘
+
 - defaults:
     link:
       relink: true
 
-- clean: ['~']
+# Check and remove dead symbolic links in the follwing directories
+- clean:
+    - "~"
+# - ~/recursive-dir:
+#   recursive: true
 
 - link:
     ~/.vim: src/vim
@@ -17,7 +42,21 @@
     ~/.oh-my-zsh/custom/themes/powerlevel10k: src/powerlevel10k
     ~/.zsh: src/zsh
     ~/.aliases: src/aliases
+    ~/.config/zed/keymap.json:
+      path: src/zed/keymap.json
+      force: true
+    ~/.config/zed/settings.json:
+      path: src/zed/settings.json
+      force: true
 
+# List of empty directories to create
+# - create:
+#   - dir1
+#   - ~/.vim/undo-history
+#   - ~/dir-with-mode:
+#     mode: 0700
+
+# Commands to run in the shell
 - shell:
-  - [brew install --cask font-meslo-for-powerlevel10k]
-  - [git submodule update --init --recursive, Installing submodules]
+    - [brew install --cask font-meslo-for-powerlevel10k]
+    - [git submodule update --init --recursive, Installing submodules]

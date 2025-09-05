@@ -46,3 +46,6 @@
 
 [help]
     autocorrect = 25 
+[user]
+	name = Nick Palenchar
+	email = nickpal@nickpalenchar.com

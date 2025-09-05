@@ -1,0 +1,72 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "",
+    "bindings": {
+      "cmd-0": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "",
+    "bindings": {
+      "cmd-2": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "",
+    "bindings": {
+      "ctrl-shift-o": "projects::OpenRecent",
+      "cmd-1": "workspace::ToggleLeftDock",
+      "cmd--": "zed::DecreaseBufferFontSize",
+      "cmd-+": "zed::IncreaseBufferFontSize"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "cmd-d": "project_panel::NewDirectory"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-s right": "workspace::NewFileSplitVertical",
+      "ctrl-shift-s down": "workspace::NewFileSplitHorizontal",
+      "ctrl-s right": "pane::SplitRight",
+      "ctrl-s left": "pane::SplitLeft",
+      "ctrl-s down": "pane::SplitDown",
+      "ctrl-s up": "pane::SplitUp",
+      "ctrl-1": "editor::FindAllReferences",
+      "ctrl-t": "editor::Rename",
+      "ctrl-right": "agent::QuoteSelection"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-alt-cmd-shift-&": [
+        "zed::ResetBufferFontSize",
+        {
+          "persist": false
+        }
+      ]
+    }
+  }
+]

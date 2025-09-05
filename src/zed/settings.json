@@ -1,0 +1,40 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent": {
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    }
+  },
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "vim_mode": true,
+  "autosave": "on_focus_change",
+  "base_keymap": "JetBrains",
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
+  "buffer_font_family": "Comic Mono",
+  "buffer_line_height": {
+    "custom": 1.3
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Frappé"
+  },
+  "terminal": {
+    "font_family": "Agave Nerd Font"
+  },
+  "project_panel": {
+    "indent_size": 14
+  }
+}
