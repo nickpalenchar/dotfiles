@@ -56,7 +56,10 @@
       "ctrl-s up": "pane::SplitUp",
       "ctrl-1": "editor::FindAllReferences",
       "ctrl-t": "editor::Rename",
-      "ctrl-right": "agent::QuoteSelection"
+      "ctrl-right": "agent::QuoteSelection",
+      "cmd-shift-c": "editor::CopyFileLocation",
+      "ctrl-shift-c": "editor::CopyPermalinkToLine",
+      "alt-r": "editor::ReloadFile",
     }
   },
   {
