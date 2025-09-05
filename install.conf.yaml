@@ -60,3 +60,4 @@
 - shell:
     - [brew install --cask font-meslo-for-powerlevel10k]
     - [git submodule update --init --recursive, Installing submodules]
+    - [which delta || brew install git-delta]
