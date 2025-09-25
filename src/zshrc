@@ -113,7 +113,7 @@ alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 
 # Add custom paths
-export PATH="$HOME/.bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 
 # Enable history sharing
 setopt SHARE_HISTORY

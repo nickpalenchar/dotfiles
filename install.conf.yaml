@@ -22,6 +22,7 @@
 - defaults:
     link:
       relink: true
+      create: true
 
 # Check and remove dead symbolic links in the follwing directories
 - clean:
@@ -50,6 +51,8 @@
       force: true
 
 # List of empty directories to create
+- create:
+  - ~/.npm-global/bin
 # - create:
 #   - dir1
 #   - ~/.vim/undo-history
